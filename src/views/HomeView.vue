@@ -2,6 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div class="mobile-container"></div>
   </div>
 </template>
 
@@ -16,3 +17,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped lang="scss">
+  .mobile-container {
+    width: 375px;
+    height: 150px;
+  }
+</style>

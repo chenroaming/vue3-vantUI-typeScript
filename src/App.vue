@@ -2,6 +2,7 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
+    <van-button type="primary">主要按钮</van-button>
   </nav>
   <router-view/>
 </template>
