@@ -7,7 +7,8 @@ import {
   Popup,
   Collapse,
   CollapseItem,
-  List
+  List,
+  Icon
 } from 'vant'
 import 'amfe-flexible' // 自适应各种分辨率屏幕
 
@@ -19,4 +20,5 @@ app.use(Popup)
 app.use(Collapse)
 app.use(CollapseItem)
 app.use(List)
+app.use(Icon)
 app.mount('#app')
