@@ -9,19 +9,13 @@ module.exports = defineConfig({
       })
     ]
   },
-  // css: {
-  //   loaderOptions: {
-  //     postcss: {
-  //       plugins: [
-  //         require('postcss-pxtorem')({
-  //           rootValue: 75, // 设置根字体大小，这里将设计稿都固定为750px的宽度，具体可以依据设计图尺寸写
-  //           propList: ['*'], // 属性的选择器，*表示通用
-  //           selectorBlackList: ['van'] // 过滤van开头的类名，不进行rem转换
-  //         })
-  //       ]
-  //     }
-  //   }
-  // },
+  lintOnSave: process.env.NODE_ENV === 'development',
   transpileDependencies: true,
-  productionSourceMap: false
+  productionSourceMap: false,
+  chainWebpack: config => {
+    // 引入ts文件时，不需要添加ts或者tsx后缀
+    config.resolve.extensions
+      .add('ts')
+      .add('tsx')
+  }
 })
