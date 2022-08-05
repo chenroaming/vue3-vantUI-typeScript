@@ -5,12 +5,13 @@
     </template>
   </van-nav-bar>
   <div class="container">
-
+    <van-button @click="handleClick">测试接口</van-button>
   </div>
   <MenuList />
 </template>
 
 <script lang="ts">
+import api from '@/api'
 import { defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import MenuList from './menuList/index.vue'
@@ -24,8 +25,12 @@ export default defineComponent({
     const openMenu = ():void => {
       commit('app/setCollapse')
     }
+    const handleClick = ():void => {
+      api.demo.login()
+    }
     return {
-      openMenu
+      openMenu,
+      handleClick
     }
   }
 })

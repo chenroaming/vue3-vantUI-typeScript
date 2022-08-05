@@ -50,6 +50,7 @@ service.interceptors.request.use(
       }
     }
     if (config?.headers) {
+      console.log(config?.headers)
       // 预先判断config配置是否存在，存在后才可对headers请求头做相应的配置操作，以下仅为示例
       config.headers['authorization'] = 'dfdabizxnaigiasduiasdfan'
     }
