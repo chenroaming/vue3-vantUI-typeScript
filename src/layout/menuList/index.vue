@@ -17,9 +17,9 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, defineComponent } from 'vue'
 import { useStore } from 'vuex'
-export default {
+export default defineComponent({
   name: 'menuList',
   setup () {
     const { getters, commit } = useStore()
@@ -42,7 +42,7 @@ export default {
       isShow
     }
   }
-}
+})
 </script>
 
 <style scoped lang = "scss">

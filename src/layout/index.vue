@@ -8,6 +8,7 @@
     <van-button @click="handleClick">测试接口</van-button>
   </div>
   <MenuList />
+  <TarBar />
 </template>
 
 <script lang="ts">
@@ -15,10 +16,12 @@ import api from '@/api'
 import { defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import MenuList from './menuList/index.vue'
+import TarBar from './tabbar/index.vue'
 export default defineComponent({
   name: 'homePage',
   components: {
-    MenuList
+    MenuList,
+    TarBar
   },
   setup () {
     const { commit } = useStore()

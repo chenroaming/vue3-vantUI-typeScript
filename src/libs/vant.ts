@@ -6,7 +6,9 @@ import {
   CollapseItem,
   List,
   Icon,
-  Toast
+  Toast,
+  Tabbar,
+  TabbarItem
 } from 'vant'
 export default (app:App):void => {
   app.use(Button)
@@ -16,4 +18,6 @@ export default (app:App):void => {
   app.use(List)
   app.use(Icon)
   app.use(Toast)
+  app.use(Tabbar)
+  app.use(TabbarItem)
 }
