@@ -16,17 +16,17 @@ const CONTENT_TYPES:contentType = {
 }
 // 请求头配置信息
 type Config = AxiosRequestConfig & { showTips? :boolean }
-// type headers = {
-//   [k:string]: string
-// }
-// type opts = {
-//   url: string
-//   method: string
-//   headers: headers
-//   showTips: boolean
-//   params?: any
-//   data?: any
-// }
+type headers = {
+  [k:string]: string
+}
+type opts = {
+  url: string
+  method: string
+  headers: headers
+  showTips: boolean
+  params?: any
+  data?: any
+}
 // // create an axios instance
 const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
@@ -37,8 +37,7 @@ const service = axios.create({
   // 超时，注意！axios的超时是中断请求，即canceled，非timeout，具体参见http://www.axios-js.com/zh-cn/docs/#axios-create-config
   timeout: 50000
 })
-// let config1 = {}
-// // request interceptor
+// request interceptor 请求拦截器
 service.interceptors.request.use(
   (config:Config):Config => {
     showTips = !!config.showTips
@@ -64,7 +63,7 @@ service.interceptors.request.use(
   }
 )
 
-// // response interceptor
+// response interceptor 回复拦截器
 service.interceptors.response.use(
   /**
      * If you want to get http information such as headers or status
@@ -104,14 +103,20 @@ service.interceptors.response.use(
       return
     }
     showTips = false
-    error.message && Toast.fail(`服务器或者网络出错！错误信息：${error.message}，HTTP错误码：${error.response.status || '暂无'}`)
+    error.message && Toast(
+      {
+        message: `服务器或者网络出错！错误信息：${error.message}，HTTP错误码：${error.response.status || '暂无'}`,
+        type: 'fail',
+        forbidClick: true
+      }
+    )
     return Promise.reject(new Error(error.message || 'Error'))
   }
 )
 
 export function ajax (method = 'post', url:string, options:any, showTips:boolean) {
   options.data = options.data || {}
-  const opts:any = {
+  const opts:opts = {
     url,
     method,
     headers: {
