@@ -17,6 +17,6 @@ module.exports = {
     // 允许对this设置alias
     '@typescript-eslint/no-this-alias': 'off',
     // 允许使用any类型
-    '@typescript-eslint/no-explicit-any': ['off'],
+    // '@typescript-eslint/no-explicit-any': ['off'],
   }
 }

@@ -1,5 +1,5 @@
 <template>
- <van-popup v-model:show="show" position="left" @click-overlay="closeMenu">
+ <van-popup v-model:show="isShow" position="left" @click-overlay="closeMenu">
     <div class="menu">
       <van-collapse v-model="activeNames">
         <van-collapse-item title="标题1" name="1">
@@ -17,13 +17,20 @@
 </template>
 
 <script lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 export default {
   name: 'menuList',
   setup () {
     const { getters, commit } = useStore()
+    const isShow = ref<boolean>(false)
     const show = computed(() => getters['app/isCollapse'])
+    watch(
+      // 避免warning：show是计算属性，只可读取不可修改
+      show, (show, prevIsShow) => {
+        isShow.value = !prevIsShow
+      }
+    )
     const activeNames = ref<Array<string>>(['1'])
     const closeMenu = ():void => {
       commit('app/setCollapse')
@@ -31,7 +38,8 @@ export default {
     return {
       show,
       closeMenu,
-      activeNames
+      activeNames,
+      isShow
     }
   }
 }

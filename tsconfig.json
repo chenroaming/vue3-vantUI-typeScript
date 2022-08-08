@@ -12,7 +12,7 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "types": [
       "webpack-env"
     ],
