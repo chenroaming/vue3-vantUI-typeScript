@@ -7,6 +7,7 @@
   <div class="container">
     <van-button @click="handleClick">测试接口</van-button>
   </div>
+  <router-view />
   <MenuList />
   <TarBar />
 </template>
