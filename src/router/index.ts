@@ -3,11 +3,20 @@ import HomeView from '../views/HomeView.vue'
 const SearchPage = () => import('@/views/search/index.vue')
 const FriendsPage = () => import('@/views/friends/index.vue')
 const MinePage = () => import('@/views/mine/index.vue')
+const HomePage = () => import('@/views/home/index.vue')
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    children: [
+      {
+        path: '/',
+        name: 'homeIndex',
+        component: HomePage,
+        meta: { title: '首页' }
+      }
+    ]
   },
   {
     path: '/search',

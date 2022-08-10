@@ -2,6 +2,21 @@
   <router-view/>
 </template>
 
+<script lang="ts">
+import { defineComponent, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+export default defineComponent({
+  setup () {
+    const $route = useRoute()
+    const $store = useStore()
+    watch($route, ():void => {
+      $store.commit('app/setPageTitle', $route.meta.title)
+    })
+  }
+})
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
