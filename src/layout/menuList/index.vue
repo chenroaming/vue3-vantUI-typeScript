@@ -24,10 +24,10 @@ export default defineComponent({
   setup () {
     const { getters, commit } = useStore()
     const isShow = ref<boolean>(false)
-    const show = computed(() => getters['app/isCollapse'])
+    const show = computed<boolean>(() => getters['app/isCollapse'])
     watch(
       // 避免warning：show是计算属性，只可读取不可修改
-      show, (show, prevIsShow) => {
+      show, (show:boolean, prevIsShow:boolean) => {
         isShow.value = !prevIsShow
       }
     )

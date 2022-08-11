@@ -1,12 +1,17 @@
+import configuration from '@/setting'
 type state = {
   isCollapse: boolean,
-  pageTitle: string
+  pageTitle: string,
+  layoutStyle: string,
+  keepAliveRoute: Array<string>
 }
 const app = {
   namespaced: true,
   state: ():state => ({
+    layoutStyle: configuration.layoutStyle,
     isCollapse: false,
-    pageTitle: ''
+    pageTitle: '',
+    keepAliveRoute: ['homeIndex', 'friendsPage', 'minePage', 'searchPage']
   }),
   mutations: {
     setCollapse (state:state):void {
@@ -21,7 +26,9 @@ const app = {
   },
   getters: {
     isCollapse: (state:state):boolean => state.isCollapse,
-    pageTitle: (state:state):string => state.pageTitle
+    pageTitle: (state:state):string => state.pageTitle,
+    layoutStyle: (state:state):string => state.layoutStyle,
+    keepAliveRoute: (state:state):Array<string> => state.keepAliveRoute
   }
 }
 
