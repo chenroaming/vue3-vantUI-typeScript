@@ -1,14 +1,15 @@
-import configuration from '@/setting'
+import { configuration, setting } from '@/setting'
+
 type state = {
   isCollapse: boolean,
   pageTitle: string,
-  layoutStyle: string,
+  configuration: setting,
   keepAliveRoute: Array<string>
 }
 const app = {
   namespaced: true,
   state: ():state => ({
-    layoutStyle: configuration.layoutStyle,
+    configuration: configuration,
     isCollapse: false,
     pageTitle: '',
     keepAliveRoute: ['homeIndex', 'friendsPage', 'minePage', 'searchPage']
@@ -27,7 +28,7 @@ const app = {
   getters: {
     isCollapse: (state:state):boolean => state.isCollapse,
     pageTitle: (state:state):string => state.pageTitle,
-    layoutStyle: (state:state):string => state.layoutStyle,
+    configuration: (state:state):setting => state.configuration,
     keepAliveRoute: (state:state):Array<string> => state.keepAliveRoute
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <van-nav-bar fixed :title="title" @click-left="openMenu" placeholder>
-    <template v-if="layoutStyle === 'MenuList'" #left>
+    <template v-if="needSideBar" #left>
       <van-icon name="wap-nav" color="#191C24" />
     </template>
   </van-nav-bar>
@@ -9,19 +9,25 @@
       <component :is="Component" />
     </keep-alive>
   </router-view>
-  <component :is="layoutStyle" />
+  <component
+    v-for="item in configuration"
+    :key="item.key"
+    :is="item.key" />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
-import MenuList from './menuList/index.vue'
-import TarBar from './tabbar/index.vue'
+import SideBar from './SideBar/index.vue'
+import NavBar from './NavBar/index.vue'
+type configuration = {
+  key: string
+}
 export default defineComponent({
   name: 'homePage',
   components: {
-    MenuList,
-    TarBar
+    SideBar,
+    NavBar
   },
   setup () {
     const { commit, getters } = useStore()
@@ -31,8 +37,22 @@ export default defineComponent({
     const title = computed<string>(() => {
       return getters['app/pageTitle']
     })
-    const layoutStyle = computed<string>(() => {
-      return getters['app/layoutStyle']
+    const configuration = computed<Array<configuration>>(() => {
+      const configurationToArr = Object.keys(getters['app/configuration'])
+      return configurationToArr
+        .filter(el => {
+          return getters['app/configuration'][el]
+        })
+        .map(el => {
+          return {
+            key: el
+          }
+        })
+    })
+    const needSideBar = computed<boolean>(() => {
+      return configuration
+        .value
+        .some((el:configuration):boolean => ['SideBar'].includes(el.key))
     })
     const keepAliveRoute = computed<Array<string>>(() => {
       return getters['app/keepAliveRoute']
@@ -40,8 +60,9 @@ export default defineComponent({
     return {
       openMenu,
       title,
-      layoutStyle,
-      keepAliveRoute
+      configuration,
+      keepAliveRoute,
+      needSideBar
     }
   }
 })

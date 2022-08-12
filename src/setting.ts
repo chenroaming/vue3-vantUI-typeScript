@@ -1,9 +1,9 @@
-type setting = {
-  layoutStyle: string
+export type setting = {
+  SideBar: boolean,
+  NavBar: boolean
 }
 
-const configuration:setting = {
-  layoutStyle: 'TarBar'
+export const configuration:setting = {
+  SideBar: true,
+  NavBar: true
 }
-
-export default configuration
