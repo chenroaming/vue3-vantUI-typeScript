@@ -4,7 +4,8 @@ type state = {
   isCollapse: boolean,
   pageTitle: string,
   configuration: setting,
-  keepAliveRoute: Array<string>
+  keepAliveRoute: Array<string>,
+  nonHomePage: boolean
 }
 const app = {
   namespaced: true,
@@ -12,7 +13,8 @@ const app = {
     configuration: configuration,
     isCollapse: false,
     pageTitle: '',
-    keepAliveRoute: ['homeIndex', 'friendsPage', 'minePage', 'searchPage']
+    keepAliveRoute: ['homeIndex', 'friendsPage', 'minePage', 'searchPage'],
+    nonHomePage: false
   }),
   mutations: {
     setCollapse (state:state):void {
@@ -20,6 +22,9 @@ const app = {
     },
     setPageTitle (state:state, title:string):void {
       state.pageTitle = title
+    },
+    setHomePageStatus (state:state, status:boolean):void {
+      state.nonHomePage = status
     }
   },
   actions: {
@@ -29,7 +34,8 @@ const app = {
     isCollapse: (state:state):boolean => state.isCollapse,
     pageTitle: (state:state):string => state.pageTitle,
     configuration: (state:state):setting => state.configuration,
-    keepAliveRoute: (state:state):Array<string> => state.keepAliveRoute
+    keepAliveRoute: (state:state):Array<string> => state.keepAliveRoute,
+    nonHomePage: (state:state):boolean => state.nonHomePage
   }
 }
 

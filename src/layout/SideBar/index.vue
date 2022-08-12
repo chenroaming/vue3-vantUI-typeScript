@@ -21,7 +21,7 @@
         :key="item.label"
         class="card-item"
         :class="{ itemActived: isActived(item.label) }"
-        @click="setActive(item.label)">
+        @click="setActive(item.label, item.path)">
         <span>{{ item.label }}</span>
         <van-icon name="arrow" />
       </div>
@@ -33,6 +33,7 @@
 <script lang="ts">
 import { computed, ref, watch, defineComponent } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 type menuItem = {
   label: string,
   path: string
@@ -41,6 +42,7 @@ export default defineComponent({
   name: 'menuList',
   setup () {
     const { getters, commit } = useStore()
+    const $route = useRouter()
     const activeLabel = ref<string>('')
     const isShow = ref<boolean>(false)
     const show = computed<boolean>(() => getters['app/isCollapse'])
@@ -70,8 +72,11 @@ export default defineComponent({
         }
       ]
     )
-    const setActive = (label:string) => {
+    const setActive = (label:string, path:string):void => {
       activeLabel.value = label
+      commit('app/setHomePageStatus', true)
+      commit('app/setCollapse')
+      $route.push(path)
     }
     const isActived = (label:string):boolean => {
       return label === activeLabel.value

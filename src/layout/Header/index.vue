@@ -1,7 +1,13 @@
 <template>
  <van-nav-bar fixed :title="title" @click-left="openMenu" placeholder>
-    <template v-if="needSideBar" #left>
-      <van-icon name="wap-nav" color="#191C24" />
+    <template #left>
+      <van-icon
+        v-if="needSideBar"
+        name="wap-nav"
+        color="#191C24" />
+      <van-icon
+        v-else
+        name="arrow-left" />
     </template>
   </van-nav-bar>
 </template>
@@ -10,12 +16,22 @@
 import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import { configuration } from '@/types'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'pulicHeaders',
   setup () {
     const { commit, getters } = useStore()
+    const $route = useRouter()
+    const nonHomePage = computed<boolean>(() => {
+      return getters['app/nonHomePage']
+    })
     const openMenu = ():void => {
-      commit('app/setCollapse')
+      if (nonHomePage.value) {
+        commit('app/setHomePageStatus', false)
+        $route.go(-1)
+      } else {
+        commit('app/setCollapse')
+      }
     }
     const title = computed<string>(() => {
       return getters['app/pageTitle']
@@ -35,7 +51,8 @@ export default defineComponent({
     const needSideBar = computed<boolean>(() => {
       return configuration
         .value
-        .some((el:configuration):boolean => ['SideBar'].includes(el.key))
+        .some((el:configuration):boolean => ['SideBar'].includes(el.key)) &&
+        !nonHomePage.value
     })
     return {
       title,
