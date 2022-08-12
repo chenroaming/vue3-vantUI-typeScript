@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+const HomeView = () => import('@/views/HomeView.vue')
 const SearchPage = () => import('@/views/search/index.vue')
 const FriendsPage = () => import('@/views/friends/index.vue')
 const MinePage = () => import('@/views/mine/index.vue')

@@ -1,32 +1,22 @@
 <template>
-  <Header />
-  <router-view v-slot="{ Component }">
-    <keep-alive :include="keepAliveRoute">
-      <component :is="Component" />
-    </keep-alive>
-  </router-view>
-  <component
-    v-for="item in configuration"
-    :key="item.key"
-    :is="item.key" />
+ <van-nav-bar fixed :title="title" @click-left="openMenu" placeholder>
+    <template v-if="needSideBar" #left>
+      <van-icon name="wap-nav" color="#191C24" />
+    </template>
+  </van-nav-bar>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
-import Header from './Header/index.vue'
-import SideBar from './SideBar/index.vue'
-import NavBar from './NavBar/index.vue'
 import { configuration } from '@/types'
 export default defineComponent({
-  name: 'homePage',
-  components: {
-    Header,
-    SideBar,
-    NavBar
-  },
+  name: 'pulicHeaders',
   setup () {
-    const { getters } = useStore()
+    const { commit, getters } = useStore()
+    const openMenu = ():void => {
+      commit('app/setCollapse')
+    }
     const title = computed<string>(() => {
       return getters['app/pageTitle']
     })
@@ -42,20 +32,20 @@ export default defineComponent({
           }
         })
     })
-    const keepAliveRoute = computed<Array<string>>(() => {
-      return getters['app/keepAliveRoute']
+    const needSideBar = computed<boolean>(() => {
+      return configuration
+        .value
+        .some((el:configuration):boolean => ['SideBar'].includes(el.key))
     })
     return {
       title,
-      configuration,
-      keepAliveRoute
+      openMenu,
+      needSideBar
     }
   }
 })
 </script>
 
 <style scoped lang = "scss">
-  .container {
-    padding-top: 100px;
-  }
+
 </style>
