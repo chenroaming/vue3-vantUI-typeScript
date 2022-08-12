@@ -15,7 +15,9 @@ module.exports = {
     // 允许自定义模块和命名空间
     '@typescript-eslint/no-namespace': 'off',
     // 允许对this设置alias
-    '@typescript-eslint/no-this-alias': 'off'
+    '@typescript-eslint/no-this-alias': 'off',
+    // 允许使用require导入语法
+    '@typescript-eslint/no-var-requires': 'off'
     // 允许使用any类型
     // '@typescript-eslint/no-explicit-any': ['off'],
   }
