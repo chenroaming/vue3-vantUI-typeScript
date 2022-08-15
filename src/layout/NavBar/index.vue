@@ -1,25 +1,28 @@
 <template>
   <van-tabbar v-model="active">
-    <van-tabbar-item replace to="/" name="home" icon="home-o">首页</van-tabbar-item>
-    <van-tabbar-item replace to="/search" name="search" icon="search">搜寻</van-tabbar-item>
-    <van-tabbar-item replace to="/friends" name="friends" icon="friends-o">朋友</van-tabbar-item>
-    <van-tabbar-item replace to="/mine" name="mine" icon="setting-o">我的</van-tabbar-item>
+    <van-tabbar-item
+      v-for="item in tabBar"
+      :key="item.name"
+      replace
+      :to="item.path"
+      :name="item.name"
+      :icon="item.meta.icon">{{ item.name }}</van-tabbar-item>
   </van-tabbar>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
+import tarbarRoutes from '@/router/pages/tabBar'
+import { RouteRecordRaw } from 'vue-router'
 export default defineComponent({
   name: 'tabbarList',
   setup () {
-    const active = ref<string>('home')
+    const active = ref<string>('tabBar1')
+    const tabBar = ref<Array<RouteRecordRaw>>(tarbarRoutes)
     return {
-      active
+      active,
+      tabBar
     }
   }
 })
 </script>
-
-<style scoped lang = "scss">
-
-</style>

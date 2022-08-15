@@ -11,15 +11,15 @@
 import api from '@/api'
 import { ref, defineComponent, onActivated } from 'vue'
 export default defineComponent({
-  name: 'minePage',
+  name: 'tabBarPage4',
   setup () {
-    const msg = ref<string>('个人中心页面')
+    const msg = ref<string>('this is tabBarPage4')
     const handleClick = ():void => {
       api.demo.login()
     }
     onActivated(():void => {
       // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
-      console.log('minePage is activated!!!')
+      console.log('tabBarPage4 is activated!!!')
     })
     return {
       msg,
