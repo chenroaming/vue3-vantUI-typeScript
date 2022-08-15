@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 
 interface module {
-  [data: string]: any
+  [k: string]: any
 }
 // 导入所有的vuex模块
 const storeModels = require.context('./modules/', false, /\.ts$/)
