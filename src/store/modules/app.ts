@@ -13,7 +13,7 @@ const app = {
     configuration: configuration,
     isCollapse: false,
     pageTitle: '',
-    keepAliveRoute: ['homeIndex', 'friendsPage', 'minePage', 'searchPage'],
+    keepAliveRoute: ['homePage', 'searchPage', 'friendsPage', 'minePage'],
     nonHomePage: false
   }),
   mutations: {

@@ -9,7 +9,7 @@
 <script lang='ts'>
 import { ref, defineComponent, onActivated } from 'vue'
 export default defineComponent({
-  name: 'homeIndex',
+  name: 'homePage',
   setup () {
     const msg = ref<string>('首页')
     const count = ref<number>(0)

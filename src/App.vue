@@ -1,5 +1,10 @@
 <template>
-  <router-view/>
+  <!-- 此处也需要增加keep-alive组件，否则首页的保活效果会失效 -->
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
 </template>
 
 <script lang="ts">
@@ -9,9 +14,9 @@ import { useStore } from 'vuex'
 export default defineComponent({
   setup () {
     const $route = useRoute()
-    const $store = useStore()
+    const { commit } = useStore()
     watch($route, ():void => {
-      $store.commit('app/setPageTitle', $route.meta.title)
+      commit('app/setPageTitle', $route.meta.title)
     })
   }
 })

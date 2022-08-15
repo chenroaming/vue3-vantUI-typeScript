@@ -2,7 +2,7 @@
  * @Author: chenroaming
  * @Date: 2022-08-15 13:38:53
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-15 15:32:56
+ * @LastEditTime: 2022-08-15 16:36:42
  * @FilePath: src\router\pages\tarbar.ts
  * @Description: 底部导航栏页面写在此文件中
  */
@@ -22,7 +22,7 @@ const tarbarRoutes:Array<RouteRecordRaw> = [
     children: [
       {
         path: '/',
-        name: 'homeIndex',
+        name: 'homePage',
         component: HomePage,
         meta: { title: '首页' }
       }
