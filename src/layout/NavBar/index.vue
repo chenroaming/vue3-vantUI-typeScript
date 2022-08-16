@@ -13,12 +13,22 @@
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
 import tarbarRoutes from '@/router/pages/tabBar'
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
+interface meta {
+  title: string,
+  icon?: string
+}
+interface Route {
+  name: string,
+  path: string,
+  meta?: meta,
+  children?: RouteRecordRaw[]
+}
 export default defineComponent({
   name: 'tabbarList',
   setup () {
     const active = ref<string>('tabBar1')
-    const tabBar = ref<Array<RouteRecordRaw>>(tarbarRoutes)
+    const tabBar = ref<RouteRecordRaw[] | Route[]>(tarbarRoutes)
     return {
       active,
       tabBar
