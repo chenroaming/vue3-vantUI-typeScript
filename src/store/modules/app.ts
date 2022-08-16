@@ -13,7 +13,7 @@ const app = {
     configuration: configuration,
     isCollapse: false,
     pageTitle: '',
-    keepAliveRoute: ['tabBarPage1', 'tabBarPage2', 'tabBarPage3', 'tabBar4'],
+    keepAliveRoute: ['tabBarPage1', 'tabBarPage2', 'tabBarPage3', 'tabBarPage4'],
     nonHomePage: false
   }),
   mutations: {
