@@ -1,12 +1,12 @@
 <template>
   <van-tabbar v-model="active">
     <van-tabbar-item
-      v-for="item in tabBar"
+      v-for="item in tabBar[0].children"
       :key="item.name"
       replace
       :to="item.path"
-      :name="item.name"
-      :icon="item.meta.icon">{{ item.name }}</van-tabbar-item>
+      :name="item?.name || ''"
+      :icon="item?.meta?.icon || ''">{{ item.name }}</van-tabbar-item>
   </van-tabbar>
 </template>
 

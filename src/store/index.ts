@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-
 interface module {
   [k: string]: any
 }
