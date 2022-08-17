@@ -2,31 +2,16 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { omit } from 'lodash'
 import $router from '@/router'
 import { Toast } from 'vant'
+import { paramsConfing, apiConfig, apiItems, maps, axiosOptions, kIsNumberVIsStr } from '@/types'
 let showTips = false
-interface contentType {
-  [k:number]: string
-}
-// interface axiosHeaders {
-//   [k:string]: string
-// }
-const CONTENT_TYPES:contentType = {
+
+const contentType:kIsNumberVIsStr = {
   1: 'application/json',
   2: 'multipart/form-data',
   3: 'application/x-www-form-urlencoded'
 }
 // 请求头配置信息
 type Config = AxiosRequestConfig & { showTips? :boolean }
-type headers = {
-  [k:string]: string
-}
-type opts = {
-  url: string
-  method: string
-  headers: headers
-  showTips: boolean
-  params?: any
-  data?: any
-}
 // // create an axios instance
 const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
@@ -49,9 +34,9 @@ service.interceptors.request.use(
       }
     }
     if (config?.headers) {
-      console.log(config?.headers)
       // 预先判断config配置是否存在，存在后才可对headers请求头做相应的配置操作，以下仅为示例
-      config.headers['authorization'] = 'dfdabizxnaigiasduiasdfan'
+      // 使用.标点符号的方式来写，避免eslint报错is better written in dot notation  dot-notation
+      config.headers.authorization = 'dfdabizxnaigiasduiasdfan'
     }
     return config
   },
@@ -77,7 +62,7 @@ service.interceptors.response.use(
      */
   (response:AxiosResponse) => {
     const res = response.data
-    // if the custom code is not 20000, it is judged as an error.
+    // 假设接口返回的code为非20000，则判断为错误，可根据实际项目调整
     if (res.code === 20000) {
       showTips && Toast({
         message: res.message,
@@ -114,24 +99,21 @@ service.interceptors.response.use(
   }
 )
 
-export function ajax (method = 'post', url:string, options:any, showTips:boolean) {
+export function ajax (method = 'post', url:string, options:axiosOptions) {
   options.data = options.data || {}
-  const opts:opts = {
+  const opts:apiItems = {
+    key: '',
     url,
     method,
     headers: {
-      'Content-type': CONTENT_TYPES[options.cType]
+      'Content-type': contentType[options.cType as keyof typeof contentType]
     },
-    showTips
+    showTips: options.showTips
   }
   if (method === 'get') {
     opts.params = options.data
   }
   if (method === 'delete') {
-    /**
-     * 2020年11月16日 @chenxiaoming
-     * delete 请求  兼容rest风格（请求参数拼接在路径上）
-     */
     const [params] = Object.values(options.data)
     opts.url = `${opts.url}/${params}`
   }
@@ -141,15 +123,16 @@ export function ajax (method = 'post', url:string, options:any, showTips:boolean
   return service(opts)
 }
 
-export function generate (config:any) {
-  const map:any = {}
+export function generate (config:apiConfig) {
+  const map:maps = {}
   const { items } = config
-  for (let i = 0, len = items.length; i < len; i++) {
-    map[items[i].key] = function (data:any) {
-      return ajax(items[i].method, (items[i].prefix || config.prefix || '') + items[i].url, {
+  for (let i = 0; i < items.length; i++) {
+    map[items[i].key] = (data:paramsConfing) => {
+      return ajax(items[i].method, `${(items[i].prefix || config.prefix || '')}${items[i].url}`, {
         data,
-        ...(omit(items[i], ['key', 'url', 'method', 'prefix', 'params']) || {})
-      }, items[i].showTips)
+        ...(omit(items[i], ['key', 'url', 'method', 'prefix', 'params']) || {}),
+        cType: items[i].cType || 1
+      })
     }
   }
   return map

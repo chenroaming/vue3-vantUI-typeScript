@@ -5,7 +5,7 @@
       :key="item.name"
       replace
       :to="item.path"
-      :name="item?.name || ''"
+      :name="item?.meta?.title || ''"
       :icon="item?.meta?.icon || ''">{{ item.name }}</van-tabbar-item>
   </van-tabbar>
 </template>
@@ -14,21 +14,11 @@
 import { ref, defineComponent } from 'vue'
 import tarbarRoutes from '@/router/pages/tabBar'
 import type { RouteRecordRaw } from 'vue-router'
-interface meta {
-  title: string,
-  icon?: string
-}
-interface Route {
-  name: string,
-  path: string,
-  meta?: meta,
-  children?: RouteRecordRaw[]
-}
 export default defineComponent({
   name: 'tabbarList',
   setup () {
     const active = ref<string>('tabBar1')
-    const tabBar = ref<RouteRecordRaw[] | Route[]>(tarbarRoutes)
+    const tabBar = ref<RouteRecordRaw[]>(tarbarRoutes)
     return {
       active,
       tabBar

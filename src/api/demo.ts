@@ -1,17 +1,10 @@
-interface items {
-  key: string
-  url: string
-  method: string
-  showTips?: boolean
-}
-interface config {
-  items: Array<items>
-}
+// 所有的import语句都写在文件顶部，避免Import in body of module; reorder to top  import/first的报错
+import { generate } from '@/libs/axios'
+import { apiConfig } from '@/types'
 /**
  * 示例接口
  */
-import { generate } from '@/libs/axios'
-const config:config = {
+const config:apiConfig = {
   items: [
     // 登录接口
     {

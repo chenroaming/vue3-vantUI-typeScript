@@ -6,7 +6,7 @@ import { RouteRecordRaw } from 'vue-router'
 // 引入store路径需要详细指定具体文件夹
 import store from '@/store'
 // 白名单路径
-const whiteList:Array<string> = ['/login']
+// const whiteList:string[] = ['/login']
 // vue-router4.x不再推荐使用next()，推荐使用return的方式进行下一步导航操作
 // 参见：https://next.router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%8F%AF%E9%80%89%E7%9A%84%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0-next
 router.beforeEach(async to => {
