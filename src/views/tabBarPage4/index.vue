@@ -14,8 +14,11 @@ export default defineComponent({
   name: 'tabBarPage4',
   setup () {
     const msg = ref<string>('this is tabBarPage4')
-    const handleClick = ():void => {
-      api.demo.login()
+    const handleClick = async () => {
+      const obj:{ name: string, age?: number } = { name: 'zhagnsan' }
+      obj.age = 1
+      const res = await api.demo.login({ ...obj })
+      console.log(res)
     }
     onActivated(():void => {
       // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
