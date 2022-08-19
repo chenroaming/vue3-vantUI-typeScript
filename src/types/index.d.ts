@@ -1,3 +1,5 @@
+import type { RouteComponent } from 'vue-router'
+
 export interface configuration {
   key: string
 }
@@ -38,4 +40,16 @@ export interface axiosOptions {
   cType?: number | string,
   showTips?: boolean,
   headers?: object
+}
+
+export declare interface meta {
+  title?: string,
+  icon?: string
+}
+export declare interface routeRaw {
+  name: string,
+  path: string,
+  component: RouteComponent,
+  meta: meta,
+  children?: routeRaw[]
 }

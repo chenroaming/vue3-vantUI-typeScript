@@ -2,7 +2,7 @@
  * @Author: chenroaming
  * @Date: 2022-08-15 13:38:53
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-16 17:13:52
+ * @LastEditTime: 2022-08-19 16:56:01
  * @FilePath: src\router\pages\tarbar.ts
  * @Description: 底部导航栏页面写在此文件中
  */
