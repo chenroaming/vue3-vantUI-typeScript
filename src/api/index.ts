@@ -9,7 +9,6 @@ const noImport:string[] = ['index']
 const apiModels = require.context('./', false, /\.ts$/)
 const modules = apiModels.keys().reduce((module:apiModule, modulePath:string) => {
   // 解析文件名
-  console.log(module)
   const moduleName:string = modulePath.replace(/^.\/(.*)\.ts/, '$1')
   const value = apiModels(modulePath)
   if (!noImport.includes(moduleName)) {

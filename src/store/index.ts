@@ -7,7 +7,6 @@ interface module {
 const storeModels = require.context('./modules/', false, /\.ts$/)
 const modules = storeModels.keys().reduce((module:module, modulePath:string) => {
   // 解析文件名
-  console.log(module)
   const moduleName:string = modulePath.replace(/^.\/(.*)\.ts/, '$1')
   const value = storeModels(modulePath)
   module[moduleName] = value.default

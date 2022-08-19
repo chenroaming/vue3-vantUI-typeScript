@@ -36,5 +36,6 @@ export interface axiosOptions {
   params?: maps,
   data: maps,
   cType?: number | string,
-  showTips?: boolean
+  showTips?: boolean,
+  headers?: object
 }

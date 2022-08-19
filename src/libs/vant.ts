@@ -8,7 +8,10 @@ import {
   Icon,
   Toast,
   Tabbar,
-  TabbarItem
+  TabbarItem,
+  Cell,
+  CellGroup,
+  Field
 } from 'vant'
 export default (app:App):void => {
   app.use(Button)
@@ -20,4 +23,7 @@ export default (app:App):void => {
   app.use(Toast)
   app.use(Tabbar)
   app.use(TabbarItem)
+  app.use(Cell)
+  app.use(CellGroup)
+  app.use(Field)
 }

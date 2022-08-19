@@ -19,6 +19,12 @@ const config:apiConfig = {
       url: '/vue3-element-template/user/getRoles',
       method: 'get',
       showTips: false
+    },
+    {
+      key: 'getFundDetailList',
+      url: '/f10/lsjz',
+      method: 'get',
+      showTips: true
     }
   ]
 }

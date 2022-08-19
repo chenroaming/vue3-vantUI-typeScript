@@ -2,23 +2,42 @@
  <div>
   {{ msg }}
   <div class="container">
-    <van-button @click="handleClick">测试接口</van-button>
+    <van-cell-group inset>
+      <van-field v-model="form.fundCode" label="基金代号" placeholder="请输入基金代号" />
+    </van-cell-group>
+    <van-button @click="handleClick" size="mini">点击查询最近10条基金净值信息</van-button>
+    <CellList :list="list"></CellList>
   </div>
  </div>
 </template>
 
 <script lang="ts">
 import api from '@/api'
-import { ref, defineComponent, onActivated } from 'vue'
+import { ref, reactive, defineComponent, onActivated } from 'vue'
+import CellList from './components/cell.vue'
+import { listItem, getFundDetailList } from '@/types/response/demo'
+interface form {
+  fundCode: number | null,
+  pageIndex: number,
+  pageSize: number
+}
 export default defineComponent({
   name: 'tabBarPage4',
+  components: {
+    CellList
+  },
   setup () {
     const msg = ref<string>('this is tabBarPage4')
+    const list = ref<listItem[]>([])
+    const form = reactive<form>({
+      fundCode: null,
+      pageIndex: 1,
+      pageSize: 10
+    })
     const handleClick = async () => {
-      const obj:{ name: string, age?: number } = { name: 'zhagnsan' }
-      obj.age = 1
-      const res = await api.demo.login({ ...obj })
-      console.log(res)
+      // 示例接口请求方式，有其他更好的写法也可以
+      const res = await api.demo.getFundDetailList({ ...form }) as getFundDetailList
+      list.value = res.Data.LSJZList
     }
     onActivated(():void => {
       // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
@@ -26,7 +45,9 @@ export default defineComponent({
     })
     return {
       msg,
-      handleClick
+      handleClick,
+      list,
+      form
     }
   }
 })

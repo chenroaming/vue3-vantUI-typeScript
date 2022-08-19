@@ -62,6 +62,16 @@ service.interceptors.response.use(
      */
   (response:AxiosResponse) => {
     const res = response.data
+    // 临时的一个判断方法，这里调用的是天天基金网的接口，只要Data为true，则判断为请求成功
+    if (res.Data) {
+      showTips && Toast({
+        message: '查询成功！',
+        type: 'success',
+        duration: 5 * 1000
+      })
+      showTips = false
+      return res
+    }
     // 假设接口返回的code为非20000，则判断为错误，可根据实际项目调整
     if (res.code === 20000) {
       showTips && Toast({
@@ -106,7 +116,8 @@ export function ajax (method = 'post', url:string, options:axiosOptions) {
     url,
     method,
     headers: {
-      'Content-type': contentType[options.cType as keyof typeof contentType]
+      'Content-type': contentType[options.cType as keyof typeof contentType],
+      ...options.headers
     },
     showTips: options.showTips
   }
