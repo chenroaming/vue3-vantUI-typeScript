@@ -30,7 +30,7 @@ export default defineComponent({
     const title = computed<string>(() => {
       return getters['app/pageTitle']
     })
-    const configuration = computed<Array<configuration>>(() => {
+    const configuration = computed<configuration[]>(() => {
       const configurationToArr = Object.keys(getters['app/configuration'])
       return configurationToArr
         .filter(el => {
@@ -42,7 +42,7 @@ export default defineComponent({
           }
         })
     })
-    const keepAliveRoute = computed<Array<string>>(() => {
+    const keepAliveRoute = computed<string[]>(() => {
       return getters['app/keepAliveRoute']
     })
     return {

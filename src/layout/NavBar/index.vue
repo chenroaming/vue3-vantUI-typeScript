@@ -5,8 +5,9 @@
       :key="item.name"
       replace
       :to="item.path"
-      :name="item?.meta?.title || ''"
-      :icon="item?.meta?.icon || ''">{{ item.name }}</van-tabbar-item>
+      route
+      :name="item.name"
+      :icon="item?.meta?.icon">{{ item.name }}</van-tabbar-item>
   </van-tabbar>
 </template>
 
@@ -14,11 +15,15 @@
 import { ref, defineComponent } from 'vue'
 import tarbarRoutes from '@/router/pages/tabBar'
 import type { RouteRecordRaw } from 'vue-router'
+import { useRoute } from 'vue-router'
 export default defineComponent({
   name: 'tabbarList',
   setup () {
+    const $route = useRoute()
     const active = ref<string>('tabBar1')
     const tabBar = ref<RouteRecordRaw[]>(tarbarRoutes)
+    // 刷新页面时，获取当前的路由名称，然后激活标签栏相应的标签
+    active.value = $route.name as string // 类型断言为string格式，避免报错
     return {
       active,
       tabBar
