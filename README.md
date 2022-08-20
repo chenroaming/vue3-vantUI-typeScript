@@ -1,4 +1,4 @@
-# vue-cli-ts
+# vue3-vantUI-typeScript
 
 ## Project setup
 ```
