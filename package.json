@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/echarts": "^4.9.16",
     "@types/lodash": "^4.14.182",
     "amfe-flexible": "^2.2.1",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
+    "echarts": "^5.3.3",
     "js-cookie": "^3.0.1",
     "nprogress": "^0.2.0",
     "vant": "^3.5.2",

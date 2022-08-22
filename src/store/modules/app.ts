@@ -28,7 +28,7 @@ const app = {
     isCollapse: (state:state):boolean => state.isCollapse,
     pageTitle: (state:state):string => state.pageTitle,
     configuration: (state:state):setting => state.configuration,
-    keepAliveRoute: (state:state):Array<string> => state.keepAliveRoute,
+    keepAliveRoute: (state:state):string[] => state.keepAliveRoute,
     nonHomePage: (state:state):boolean => state.nonHomePage
   }
 }
