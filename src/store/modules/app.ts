@@ -1,12 +1,6 @@
 import { configuration, setting } from '@/setting'
+import { state } from '@/types/store/app'
 
-type state = {
-  isCollapse: boolean,
-  pageTitle: string,
-  configuration: setting,
-  keepAliveRoute: Array<string>,
-  nonHomePage: boolean
-}
 const app = {
   namespaced: true,
   state: ():state => ({
