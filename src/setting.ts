@@ -1,4 +1,4 @@
-export type setting = {
+export declare type setting = {
   SideBar: boolean,
   NavBar: boolean
 }

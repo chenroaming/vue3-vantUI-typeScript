@@ -1,7 +1,7 @@
 <template>
  <div>
-  {{ msg }}
-  <p>{{ `路由跳转后，观察该计数是否会缓存：${count}` }}</p>
+  <span class="msg">{{ msg }}</span>
+  <p class="msg">{{ `路由跳转后，观察该计数是否会缓存：${count}` }}</p>
   <div>
     <van-button type="primary" size="mini" @click="add">测试keepalive，点击增加计数</van-button>
   </div>

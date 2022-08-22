@@ -1,6 +1,6 @@
 <template>
  <div>
-  {{ msg }}
+  <span class="msg">{{ msg }}</span>
   <div class="container">
     <van-cell-group inset>
       <van-field v-model="form.fundCode" label="基金代号" placeholder="请输入基金代号" />
@@ -52,7 +52,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped lang = "scss">
-
-</style>
