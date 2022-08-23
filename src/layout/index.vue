@@ -1,14 +1,16 @@
 <template>
+ <div class="container">
   <Header />
-  <router-view v-slot="{ Component }">
-    <keep-alive :include="keepAliveRoute">
-      <component :is="Component" />
-    </keep-alive>
-  </router-view>
-  <component
-    v-for="item in configuration"
-    :key="item.key"
-    :is="item.key" />
+    <router-view v-slot="{ Component }">
+      <keep-alive :include="keepAliveRoute">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
+    <component
+      v-for="item in configuration"
+      :key="item.key"
+      :is="item.key" />
+ </div>
 </template>
 
 <script lang="ts">
@@ -56,6 +58,6 @@ export default defineComponent({
 
 <style scoped lang = "scss">
   .container {
-    padding-top: 100px;
+    padding-bottom: 100px;
   }
 </style>

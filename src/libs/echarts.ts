@@ -4,7 +4,9 @@ import {
   // 系列类型的定义后缀都为 SeriesOption
   BarSeriesOption,
   LineChart,
-  LineSeriesOption
+  LineSeriesOption,
+  PieChart,
+  PieSeriesOption
 } from 'echarts/charts'
 import {
   TitleComponent,
@@ -31,11 +33,12 @@ export declare type ECOption = echarts.ComposeOption<
   | TooltipComponentOption
   | GridComponentOption
   | DatasetComponentOption
+  | PieSeriesOption
 >
 
 // 注册必须的组件
-
-echarts.use([
+const myCharts = echarts
+myCharts.use([
   TitleComponent,
   TooltipComponent,
   GridComponent,
@@ -43,9 +46,10 @@ echarts.use([
   TransformComponent,
   BarChart,
   LineChart,
+  PieChart,
   LabelLayout,
   UniversalTransition,
   CanvasRenderer
 ])
 
-export default echarts
+export default myCharts
