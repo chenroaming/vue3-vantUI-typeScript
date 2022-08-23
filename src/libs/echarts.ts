@@ -34,23 +34,18 @@ export declare type ECOption = echarts.ComposeOption<
 >
 
 // 注册必须的组件
-const installEcharts = ():void => {
-  echarts.use([
-    TitleComponent,
-    TooltipComponent,
-    GridComponent,
-    DatasetComponent,
-    TransformComponent,
-    BarChart,
-    LineChart,
-    LabelLayout,
-    UniversalTransition,
-    CanvasRenderer
-  ])
-}
 
-export function myChart (dom:HTMLElement) {
-  echarts.init(dom)
-}
+echarts.use([
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  DatasetComponent,
+  TransformComponent,
+  BarChart,
+  LineChart,
+  LabelLayout,
+  UniversalTransition,
+  CanvasRenderer
+])
 
-export default installEcharts
+export default echarts
