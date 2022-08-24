@@ -7,8 +7,7 @@ const app = {
     configuration: configuration,
     isCollapse: false,
     pageTitle: '',
-    keepAliveRoute: ['tabBarPage1', 'tabBarPage2', 'tabBarPage3', 'tabBarPage4'],
-    nonHomePage: false
+    keepAliveRoute: ['tabBarPage1', 'tabBarPage2', 'tabBarPage3', 'tabBarPage4']
   }),
   mutations: {
     setCollapse (state:state):void {
@@ -16,9 +15,6 @@ const app = {
     },
     setPageTitle (state:state, title:string):void {
       state.pageTitle = title
-    },
-    setHomePageStatus (state:state, status:boolean):void {
-      state.nonHomePage = status
     }
   },
   actions: {
@@ -28,8 +24,7 @@ const app = {
     isCollapse: (state:state):boolean => state.isCollapse,
     pageTitle: (state:state):string => state.pageTitle,
     configuration: (state:state):setting => state.configuration,
-    keepAliveRoute: (state:state):string[] => state.keepAliveRoute,
-    nonHomePage: (state:state):boolean => state.nonHomePage
+    keepAliveRoute: (state:state):string[] => state.keepAliveRoute
   }
 }
 

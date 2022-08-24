@@ -3,3 +3,8 @@ export declare interface containerStyle {
   height: string,
   [k:string]: string
 }
+
+export declare interface menuItem {
+  label: string,
+  path: string
+}

@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <Header headerIcon="arrow-left" />
   <router-view />
 </template>
 

@@ -1,6 +1,6 @@
 <template>
  <div class="container">
-  <Header />
+  <Header headerIcon="wap-nav" />
     <router-view v-slot="{ Component }">
       <keep-alive :include="keepAliveRoute">
         <component :is="Component" />

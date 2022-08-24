@@ -34,10 +34,9 @@
 import { computed, ref, watch, defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-type menuItem = {
-  label: string,
-  path: string
-}
+import pagesRoutes from '@/router/pages/pages'
+import type { RouteRecordRaw } from 'vue-router'
+import type { menuItem } from '@/types/components'
 export default defineComponent({
   name: 'menuList',
   setup () {
@@ -48,33 +47,19 @@ export default defineComponent({
     const show = computed<boolean>(() => getters['app/isCollapse'])
     const avatar = require('@/assets/GitHub-Mark-64px.png')
     const active = ref<number>(0)
-    const menuList = ref<Array<menuItem>>(
-      [
-        {
-          label: '示例菜单1',
-          path: '/menu1'
-        },
-        {
-          label: '示例菜单2',
-          path: '/menu2'
-        },
-        {
-          label: '示例菜单3',
-          path: '/menu3'
-        },
-        {
-          label: '示例菜单4',
-          path: '/menu4'
-        },
-        {
-          label: '示例菜单5',
-          path: '/menu5'
+    const menuList = computed<menuItem[]>(() => {
+      return pagesRoutes.map((el:RouteRecordRaw):menuItem => {
+        // 类型守卫，确保一定是数组类型的数据才能使用解构
+        const [children] = el.children instanceof Array ? el.children : []
+        return {
+          // 类型守卫，确保一定是string类型的数据
+          label: typeof children?.meta?.title === 'string' ? children.meta.title : '',
+          path: typeof children?.path === 'string' ? children.path : ''
         }
-      ]
-    )
+      })
+    })
     const setActive = (label:string, path:string):void => {
       activeLabel.value = label
-      commit('app/setHomePageStatus', true)
       commit('app/setCollapse')
       $route.push(path)
     }

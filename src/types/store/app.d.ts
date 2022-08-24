@@ -2,6 +2,5 @@ export declare interface state {
   isCollapse: boolean,
   pageTitle: string,
   configuration: setting,
-  keepAliveRoute: Array<string>,
-  nonHomePage: boolean
+  keepAliveRoute: Array<string>
 }
