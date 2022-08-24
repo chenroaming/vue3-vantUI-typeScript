@@ -1,3 +1,12 @@
+/*
+ * @Description:api接口response类型声明文件
+ * @Version: 1.0.0
+ * @Author: chenroaming
+ * @Date: 2022-08-19 11:38:43
+ * @LastEditors: chenroaming
+ * @LastEditTime: 2022-08-24 14:59:21
+ */
+
 export declare interface listItem {
   FSRQ: string,
   DWJZ: string,
