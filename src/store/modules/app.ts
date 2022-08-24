@@ -1,8 +1,9 @@
+import { configuration, setting } from '@/setting'
 import { state } from '@/types/store/app'
-
 const app = {
   namespaced: true,
   state: ():state => ({
+    configuration: configuration,
     isCollapse: false, // 侧边菜单栏收缩开关
     pageTitle: '', // 导航栏标题
     keepAliveRoute: ['tabBarPage1', 'tabBarPage2', 'tabBarPage3', 'tabBarPage4'] // 保活页面
@@ -34,6 +35,7 @@ const app = {
   getters: {
     isCollapse: (state:state):boolean => state.isCollapse,
     pageTitle: (state:state):string => state.pageTitle,
+    configuration: (state:state):setting => state.configuration,
     keepAliveRoute: (state:state):string[] => state.keepAliveRoute
   }
 }
