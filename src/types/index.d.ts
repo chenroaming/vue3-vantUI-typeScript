@@ -1,4 +1,4 @@
-import type { RouteComponent } from 'vue-router'
+import type { RouteComponent, RouteRecordRaw } from 'vue-router'
 
 export interface configuration {
   key: string
@@ -46,10 +46,12 @@ export declare interface meta {
   title?: string,
   icon?: string
 }
-export declare interface routeRaw {
-  name: string,
-  path: string,
-  component: RouteComponent,
-  meta: meta,
-  children?: routeRaw[]
-}
+export declare type routeRaw = {
+  meta: { title: string, icon: string }
+} & RouteRecordRaw
+
+export declare type CustomRouteRecordRaw = [
+  Omit<RouteRecordRaw, 'children'> & {
+    children: routeRaw[]
+  }
+]

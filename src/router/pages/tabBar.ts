@@ -2,19 +2,19 @@
  * @Author: chenroaming
  * @Date: 2022-08-15 13:38:53
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-19 16:56:01
+ * @LastEditTime: 2022-08-24 18:08:55
  * @FilePath: src\router\pages\tarbar.ts
  * @Description: 底部导航栏页面写在此文件中
  */
 
-import type { RouteRecordRaw } from 'vue-router'
+import type { CustomRouteRecordRaw } from '@/types'
 const HomeView = () => import('@/views/HomeView.vue')
 const tabBarPage1 = () => import('@/views/tabBarPage1/index.vue')
 const tabBarPage2 = () => import('@/views/tabBarPage2/index.vue')
 const tabBarPage3 = () => import('@/views/tabBarPage3/index.vue')
 const tabBarPage4 = () => import('@/views/tabBarPage4/index.vue')
 
-const tarbarRoutes:Array<RouteRecordRaw> = [
+const tarbarRoutes:CustomRouteRecordRaw = [
   {
     path: '/',
     name: 'homeView',
