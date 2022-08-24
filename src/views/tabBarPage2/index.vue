@@ -57,14 +57,28 @@ export default defineComponent({
       },
       {
         name: 'pie',
-        title: {
-          text: '圆环图的例子',
-          left: 'center',
-          top: 'center'
-        },
         series: [
           {
             type: 'pie',
+            selectedMode: 'multiple',
+            label: {
+              show: true,
+              position: 'outside',
+              formatter: '{b}:{d}%'
+            },
+            labelLine: {
+              show: true
+            },
+            emphasis: {
+              disabled: false,
+              scale: true,
+              label: {
+                show: true,
+                fontSize: '25',
+                fontWeight: 'lighter',
+                formatter: '{b}:{d}%'
+              }
+            },
             data: [
               {
                 value: 335,
@@ -78,14 +92,13 @@ export default defineComponent({
                 value: 1548,
                 name: 'C'
               }
-            ],
-            radius: ['40%', '70%']
+            ]
           }
         ]
       },
       {
         legend: {
-          orient: 'vertical',
+          orient: 'horizontal',
           x: 'left',
           data: ['A', 'B', 'C', 'D', 'E']
         },
@@ -94,18 +107,20 @@ export default defineComponent({
             type: 'pie',
             radius: ['50%', '70%'],
             avoidLabelOverlap: false,
+            selectedMode: 'multiple',
             label: {
-              show: false,
-              position: 'center'
+              show: true,
+              position: 'outside',
+              formatter: '{b}:{d}%'
             },
             labelLine: {
-              show: false
+              show: true
             },
             emphasis: {
               label: {
                 show: true,
                 fontSize: '30',
-                fontWeight: 'bold'
+                fontWeight: 'lighter'
               }
             },
             data: [

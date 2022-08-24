@@ -20,7 +20,8 @@ import {
   DatasetComponent,
   DatasetComponentOption,
   // 内置数据转换器组件 (filter, sort)
-  TransformComponent
+  TransformComponent,
+  LegendComponent
 } from 'echarts/components'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
@@ -49,7 +50,8 @@ myCharts.use([
   PieChart,
   LabelLayout,
   UniversalTransition,
-  CanvasRenderer
+  CanvasRenderer,
+  LegendComponent
 ])
 
 export default myCharts
