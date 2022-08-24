@@ -5,7 +5,7 @@
       :key="item.name"
       replace
       route
-      v-bind="{ ...item }">{{ item.name }}</van-tabbar-item>
+      v-bind="item">{{ item.name }}</van-tabbar-item>
   </van-tabbar>
 </template>
 
@@ -22,7 +22,7 @@ import type { TabbarItemProps } from 'vant'
  * @return {*}
  * @author: yaofei
  */
-const getVanTabItem = (obj:routeRaw):Pick<TabbarItemProps, 'to' | 'name' | 'icon'> => {
+const getVanTabItemProps = (obj:routeRaw):Pick<TabbarItemProps, 'to' | 'name' | 'icon'> => {
   const { name, path, meta } = obj
   return {
     name: name as string,
@@ -36,7 +36,7 @@ export default defineComponent({
     const $route = useRoute()
     const active = ref<string>('tabBar1')
     const [tarbarRoute] = tarbarRoutes
-    const tabBar = ref(tarbarRoute.children?.map((el:routeRaw) => getVanTabItem(el)))
+    const tabBar = ref(tarbarRoute.children?.map((el:routeRaw) => getVanTabItemProps(el)))
     // 刷新页面时，获取当前的路由名称，然后激活标签栏相应的标签
     active.value = $route.name as string // 类型断言为string格式，避免报错
     return {
