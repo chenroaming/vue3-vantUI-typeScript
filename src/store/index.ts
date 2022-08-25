@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { maps } from '@/types'
+import { maps } from '@/types/utils'
 interface module {
   [k: string]: maps
 }

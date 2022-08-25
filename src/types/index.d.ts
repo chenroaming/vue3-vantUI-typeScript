@@ -1,18 +1,7 @@
-import type { RouteComponent, RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 
 export interface configuration {
   key: string
-}
-
-export interface maps {
-  [k: string]: unknown
-}
-export interface paramsConfing {
-  [k:string]: unknown
-}
-
-export interface kIsNumberVIsStr {
-  [k:number]: string
 }
 
 export interface headers {

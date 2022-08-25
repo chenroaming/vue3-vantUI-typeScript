@@ -2,7 +2,8 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { omit } from 'lodash'
 import $router from '@/router'
 import { Toast } from 'vant'
-import { paramsConfing, apiConfig, apiItems, maps, axiosOptions, kIsNumberVIsStr } from '@/types'
+import type { apiConfig, apiItems, axiosOptions } from '@/types'
+import type { maps, paramsConfing, kIsNumberVIsStr } from '@/types/utils'
 let showTips = false
 
 const contentType:kIsNumberVIsStr = {
