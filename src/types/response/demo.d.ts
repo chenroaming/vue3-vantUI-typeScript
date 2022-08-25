@@ -4,7 +4,7 @@
  * @Author: chenroaming
  * @Date: 2022-08-19 11:38:43
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-24 14:59:21
+ * @LastEditTime: 2022-08-25 11:16:46
  */
 
 export declare interface listItem {
@@ -21,7 +21,7 @@ interface Data {
   isNewType: boolean
 }
 
-export declare interface getFundDetailList {
+export declare interface getFundDetailListItem {
   Data: Data,
   ErrCode: number,
   ErrMsg: null | string,

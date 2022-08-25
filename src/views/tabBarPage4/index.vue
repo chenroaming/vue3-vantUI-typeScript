@@ -12,15 +12,11 @@
 </template>
 
 <script lang="ts">
-import api from '@/api'
+import { getFundDetailList } from '@/api/demo_fund'
 import { ref, reactive, defineComponent, onActivated } from 'vue'
 import CellList from './components/cell.vue'
-import { listItem, getFundDetailList } from '@/types/response/demo'
-interface form {
-  fundCode: number | null,
-  pageIndex: number,
-  pageSize: number
-}
+import { listItem } from '@/types/response/demo'
+import type { form } from '@/types/request/demo'
 export default defineComponent({
   name: 'tabBarPage4',
   components: {
@@ -36,8 +32,9 @@ export default defineComponent({
     })
     const handleClick = async () => {
       // 示例接口请求方式，有其他更好的写法也可以
-      const res = await api.demo.getFundDetailList({ ...form }) as getFundDetailList
-      list.value = res.Data.LSJZList
+      const res = await getFundDetailList({ ...form })
+      list.value = res.data.Data.LSJZList
+      console.log(res)
     }
     onActivated(():void => {
       // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
