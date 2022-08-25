@@ -1,153 +1,156 @@
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
-import { omit } from 'lodash'
-import $router from '@/router'
+/*
+ * @Description: 简单的axios封装
+ * @Version: 1.0.0
+ * @Author: chenroaming
+ * @Date: 2022-08-25 09:33:08
+ * @LastEditors: chenroaming
+ * @LastEditTime: 2022-08-25 15:28:04
+ */
+import axios, { AxiosInstance } from 'axios'
+// import $router from '@/router'
 import { Toast } from 'vant'
-import type { apiConfig, apiItems, axiosOptions } from '@/types'
-import type { maps, paramsConfing, kIsNumberVIsStr } from '@/types/utils'
+import type { AxiosRqConfig } from '@/types/utils'
+import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+// 是否在收到接口回复后弹提示语
 let showTips = false
 
-const contentType:kIsNumberVIsStr = {
-  1: 'application/json',
-  2: 'multipart/form-data',
-  3: 'application/x-www-form-urlencoded'
-}
-// 请求头配置信息
-type Config = AxiosRequestConfig & { showTips? :boolean }
-// // create an axios instance
-const service = axios.create({
-  // withCredentials: true, // send cookies when cross-domain requests
-  // axios中请求配置有baseURL选项，表示请求URL公共部分
-  // baseURL: process.env.VUE_APP_BASE_API,
-  baseURL: process.env.VUE_APP_BASE_API,
-  // baseURL: process.env === 'production' ? process.env.VUE_APP_BASE_API : process.env.VUE_APP_TEST_API,
-  // 超时，注意！axios的超时是中断请求，即canceled，非timeout，具体参见http://www.axios-js.com/zh-cn/docs/#axios-create-config
-  timeout: 50000
-})
-// request interceptor 请求拦截器
-service.interceptors.request.use(
-  (config:Config):Config => {
-    showTips = !!config.showTips
-    if (config.method === 'post') {
-      if (!(config.data instanceof FormData)) { // formData的情况单独处理
-        config.data = {
-          ...config.data
+/**
+ * @description: axios实例类
+ * @return {*}
+ * @author: chenroaming
+ */
+class Request {
+  // 自定义的配置参数，因为有些时候需要增加一些自定义的参数
+  // 酌情使用
+  config: AxiosRqConfig
+  axiosInstance: AxiosInstance
+  constructor (_config:AxiosRqConfig) {
+    this.config = _config
+    // 初始化一个axios实例
+    this.axiosInstance = axios.create(_config)
+
+    // request interceptor 请求拦截器
+    this.axiosInstance.interceptors.request.use(
+      (config:AxiosRqConfig):AxiosRqConfig => {
+        showTips = !!config.showTips
+        if (config.method === 'post') {
+          // 非formData的情况则直接传json格式的数据
+          if (!(config.data instanceof FormData)) {
+            config.data = {
+              ...config.data
+            }
+          }
         }
-      }
-    }
-    if (config?.headers) {
-      // 预先判断config配置是否存在，存在后才可对headers请求头做相应的配置操作，以下仅为示例
-      // 使用.标点符号的方式来写，避免eslint报错is better written in dot notation  dot-notation
-      config.headers.authorization = 'dfdabizxnaigiasduiasdfan'
-    }
-    return config
-  },
-  error => {
-    showTips = false
-    // do something with request error
-    Toast.fail(error.message)
-    return Promise.reject(new Error(error.message || 'Error'))
-  }
-)
-
-// response interceptor 回复拦截器
-service.interceptors.response.use(
-  /**
-     * If you want to get http information such as headers or status
-     * Please return  response => response
-     */
-
-  /**
-     * Determine the request status by custom code
-     * Here is just an example
-     * You can also judge the status by HTTP Status Code
-     */
-  (response:AxiosResponse) => {
-    const res = response.data
-    // 临时的一个判断方法，这里调用的是天天基金网的接口，只要Data为true，则判断为请求成功
-    if (res.Data) {
-      showTips && Toast({
-        message: '查询成功！',
-        type: 'success',
-        duration: 5 * 1000
-      })
-      showTips = false
-      return res
-    }
-    // 假设接口返回的code为非20000，则判断为错误，可根据实际项目调整
-    if (res.code === 20000) {
-      showTips && Toast({
-        message: res.message,
-        type: 'success',
-        duration: 5 * 1000
-      })
-      showTips = false
-      return res
-    } else {
-      Toast({
-        message: `错误信息：${res.message}`,
-        type: 'fail',
-        duration: 5 * 1000
-      })
-      showTips = false
-      return res
-      // return Promise.reject(new Error(res.message || 'Error'))
-    }
-  },
-  error => {
-    if (error.response.status === 401) { // 401为token失效，重定向到登录页
-      $router.replace({ path: '/login', query: {} })
-      return
-    }
-    showTips = false
-    error.message && Toast(
-      {
-        message: `服务器或者网络出错！错误信息：${error.message}，HTTP错误码：${error.response.status || '暂无'}`,
-        type: 'fail',
-        forbidClick: true
+        // 预先判断config配置是否存在，存在后才可对headers请求头做相应的配置操作，以下仅为示例
+        if (config.headers) {
+          // 使用.标点符号的方式来写，避免eslint报错is better written in dot notation  dot-notation
+          // 此处的示例为给请求头添加一个authorization字段用以携带token
+          config.headers.authorization = 'authorization123123123'
+        }
+        return config
+      },
+      error => {
+        showTips = false
+        // 请求失败时，弹窗提示，可根据实际业务修改
+        Toast.fail(error.message)
+        return Promise.reject(new Error(error.message || 'Error'))
       }
     )
-    return Promise.reject(new Error(error.message || 'Error'))
-  }
-)
 
-export function ajax (method = 'post', url:string, options:axiosOptions) {
-  options.data = options.data || {}
-  const opts:apiItems = {
-    key: '',
-    url,
-    method,
-    headers: {
-      'Content-type': contentType[options.cType as keyof typeof contentType],
-      ...options.headers
-    },
-    showTips: options.showTips
+    // response interceptor 回复拦截器
+    this.axiosInstance.interceptors.response.use(
+      (response:AxiosResponse) => {
+        const { data: res } = response
+        // 临时的一个判断方法，这里调用的是天天基金网的接口，只要Data为true，则判断为请求成功
+        // 具体可根据实际业务进行修改
+        if (res.Data) {
+          showTips && Toast({
+            message: '查询成功！',
+            type: 'success',
+            duration: 5 * 1000
+          })
+          showTips = false
+          return response
+        }
+        // 假设接口返回的code为非20000，则判断为错误，可根据实际项目调整
+        if (res.code === 20000) {
+          showTips && Toast({
+            message: res.message,
+            type: 'success',
+            duration: 5 * 1000
+          })
+          showTips = false
+          return response
+        } else {
+          Toast({
+            message: `错误信息：${res.message}`,
+            type: 'fail',
+            duration: 5 * 1000
+          })
+          showTips = false
+          return response
+          // return Promise.reject(new Error(res.message || 'Error'))
+        }
+      },
+      error => {
+        // 401为token失效，重定向到登录页，具体可根据实际业务进行修改
+        if (error.response.status === 401) {
+          // $router.replace({ path: '/login', query: {} })
+          return
+        }
+        showTips = false
+        error.message && Toast(
+          {
+            message: `服务器或者网络出错！错误信息：${error.message}，HTTP错误码：${error.response.status || '暂无'}`,
+            type: 'fail',
+            forbidClick: true
+          }
+        )
+        return Promise.reject(new Error(error.message || 'Error'))
+      }
+    )
   }
-  if (method === 'get') {
-    opts.params = options.data
+
+  // get方式
+  get = (config:AxiosRqConfig) => {
+    return this.axiosInstance({
+      method: 'get',
+      ...config
+    })
   }
-  if (method === 'delete') {
-    const [params] = Object.values(options.data)
-    opts.url = `${opts.url}/${params}`
+
+  // post方式
+  post = (config:AxiosRqConfig) => {
+    return this.axiosInstance({
+      method: 'post',
+      ...config
+    })
   }
-  if (method === 'post' || method === 'put') {
-    opts.data = options.data
+
+  // delete方式
+  delete = (config:AxiosRqConfig) => {
+    return this.axiosInstance({
+      method: 'delete',
+      ...config
+    })
   }
-  return service(opts)
+
+  // put方式
+  put = (config:AxiosRqConfig) => {
+    return this.axiosInstance({
+      method: 'put',
+      ...config
+    })
+  }
 }
 
-export function generate (config:apiConfig) {
-  const map:maps = {}
-  const { items } = config
-  for (let i = 0; i < items.length; i++) {
-    map[items[i].key] = (data:paramsConfing) => {
-      return ajax(items[i].method, `${(items[i].prefix || config.prefix || '')}${items[i].url}`, {
-        data,
-        ...(omit(items[i], ['key', 'url', 'method', 'prefix', 'params']) || {}),
-        cType: items[i].cType || 1
-      })
-    }
-  }
-  return map
+// axios基础配置
+const baseConfig:AxiosRequestConfig = {
+  // axios中请求配置有baseURL选项，表示请求URL公共部分，可根据实际项目自行调整
+  baseURL: process.env.VUE_APP_BASE_API,
+  // 超时，注意！axios的超时是中断请求，即canceled，非timeout
+  // 具体参见http://www.axios-js.com/zh-cn/docs/#axios-create-config
+  timeout: 50000
 }
 
-export default {}
+export default new Request(baseConfig)

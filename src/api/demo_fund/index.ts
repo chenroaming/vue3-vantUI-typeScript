@@ -1,4 +1,4 @@
-import Request from '@/libs/simpleAxios'
+import Request from '@/libs/axios'
 import type { getFundDetailListItem } from '@/types/response/demo'
 import type { form } from '@/types/request/demo'
 type Response<T> = Promise<
