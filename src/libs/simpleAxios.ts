@@ -1,16 +1,32 @@
+/*
+ * @Description: 简单的axios封装
+ * @Version: 1.0.0
+ * @Author: chenroaming
+ * @Date: 2022-08-25 09:33:08
+ * @LastEditors: chenroaming
+ * @LastEditTime: 2022-08-25 15:28:04
+ */
 import axios, { AxiosInstance } from 'axios'
-import $router from '@/router'
+// import $router from '@/router'
 import { Toast } from 'vant'
 import type { AxiosRqConfig } from '@/types/utils'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 // 是否在收到接口回复后弹提示语
 let showTips = false
 
+/**
+ * @description: axios实例类
+ * @return {*}
+ * @author: chenroaming
+ */
 class Request {
+  // 自定义的配置参数，因为有些时候需要增加一些自定义的参数
+  // 酌情使用
   config: AxiosRqConfig
   axiosInstance: AxiosInstance
   constructor (_config:AxiosRqConfig) {
     this.config = _config
+    // 初始化一个axios实例
     this.axiosInstance = axios.create(_config)
 
     // request interceptor 请求拦截器
@@ -18,16 +34,18 @@ class Request {
       (config:AxiosRqConfig):AxiosRqConfig => {
         showTips = !!config.showTips
         if (config.method === 'post') {
-          if (!(config.data instanceof FormData)) { // formData的情况单独处理
+          // 非formData的情况则直接传json格式的数据
+          if (!(config.data instanceof FormData)) {
             config.data = {
               ...config.data
             }
           }
         }
+        // 预先判断config配置是否存在，存在后才可对headers请求头做相应的配置操作，以下仅为示例
         if (config.headers) {
-          // 预先判断config配置是否存在，存在后才可对headers请求头做相应的配置操作，以下仅为示例
           // 使用.标点符号的方式来写，避免eslint报错is better written in dot notation  dot-notation
-          config.headers.authorization = 'dfdabizxnaigiasduiasdfan'
+          // 此处的示例为给请求头添加一个authorization字段用以携带token
+          config.headers.authorization = 'authorization123123123'
         }
         return config
       },
@@ -77,7 +95,7 @@ class Request {
       error => {
         // 401为token失效，重定向到登录页，具体可根据实际业务进行修改
         if (error.response.status === 401) {
-          $router.replace({ path: '/login', query: {} })
+          // $router.replace({ path: '/login', query: {} })
           return
         }
         showTips = false
@@ -93,6 +111,7 @@ class Request {
     )
   }
 
+  // get方式
   get = (config:AxiosRqConfig) => {
     return this.axiosInstance({
       method: 'get',
@@ -100,6 +119,7 @@ class Request {
     })
   }
 
+  // post方式
   post = (config:AxiosRqConfig) => {
     return this.axiosInstance({
       method: 'post',
@@ -107,6 +127,7 @@ class Request {
     })
   }
 
+  // delete方式
   delete = (config:AxiosRqConfig) => {
     return this.axiosInstance({
       method: 'delete',
@@ -114,6 +135,7 @@ class Request {
     })
   }
 
+  // put方式
   put = (config:AxiosRqConfig) => {
     return this.axiosInstance({
       method: 'put',
@@ -122,12 +144,12 @@ class Request {
   }
 }
 
+// axios基础配置
 const baseConfig:AxiosRequestConfig = {
-  // axios中请求配置有baseURL选项，表示请求URL公共部分
-  // baseURL: process.env.VUE_APP_BASE_API,
+  // axios中请求配置有baseURL选项，表示请求URL公共部分，可根据实际项目自行调整
   baseURL: process.env.VUE_APP_BASE_API,
-  // baseURL: process.env === 'production' ? process.env.VUE_APP_BASE_API : process.env.VUE_APP_TEST_API,
-  // 超时，注意！axios的超时是中断请求，即canceled，非timeout，具体参见http://www.axios-js.com/zh-cn/docs/#axios-create-config
+  // 超时，注意！axios的超时是中断请求，即canceled，非timeout
+  // 具体参见http://www.axios-js.com/zh-cn/docs/#axios-create-config
   timeout: 50000
 }
 
