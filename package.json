@@ -11,6 +11,7 @@
     "@types/echarts": "^4.9.16",
     "@types/lodash": "^4.14.182",
     "amfe-flexible": "^2.2.1",
+    "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "echarts": "^5.3.3",

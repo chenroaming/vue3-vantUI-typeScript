@@ -16,7 +16,7 @@ import { getFundDetailList } from '@/api/demo_fund'
 import { ref, reactive, defineComponent, onActivated } from 'vue'
 import CellList from './components/cell.vue'
 import type { ListItem } from '@/types/response/demo'
-import type { GetFundDetailListParams } from '@/types/request/demo'
+import type { GetFundDetailListParams } from '@/types/request/demo.d'
 export default defineComponent({
   name: 'tabBarPage4',
   components: {
@@ -34,7 +34,6 @@ export default defineComponent({
       // 示例接口请求方式，有其他更好的写法也可以
       const { data } = await getFundDetailList({ ...form })
       list.value = data.Data.LSJZList
-      console.log(data)
     }
     onActivated(():void => {
       // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
