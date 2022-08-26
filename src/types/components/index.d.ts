@@ -4,7 +4,7 @@
  * @Author: chenroaming
  * @Date: 2022-08-24 11:33:54
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-26 09:07:38
+ * @LastEditTime: 2022-08-26 11:22:58
  */
 
 export declare interface ContainerStyle {

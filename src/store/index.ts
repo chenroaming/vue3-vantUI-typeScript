@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
-import { maps } from '@/types/utils'
+import { Maps } from '@/types/utils'
 interface module {
-  [k: string]: maps
+  [k: string]: Maps
 }
 // 导入所有的vuex模块
 const storeModels = require.context('./modules/', false, /\.ts$/)

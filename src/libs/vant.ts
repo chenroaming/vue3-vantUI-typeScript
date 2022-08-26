@@ -11,7 +11,8 @@ import {
   TabbarItem,
   Cell,
   CellGroup,
-  Field
+  Field,
+  Picker
 } from 'vant'
 export default (app:App):void => {
   app.use(Button)
@@ -26,4 +27,5 @@ export default (app:App):void => {
   app.use(Cell)
   app.use(CellGroup)
   app.use(Field)
+  app.use(Picker)
 }

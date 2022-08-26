@@ -6,7 +6,7 @@
 import { ref, defineComponent, onMounted, PropType } from 'vue'
 import type { ECOption } from '@/libs/echarts'
 import echarts from '@/libs/echarts'
-import type { containerStyle } from '@/types/components'
+import type { ContainerStyle } from '@/types/components'
 export default defineComponent({
   name: 'echartsContainer',
   props: {
@@ -17,8 +17,8 @@ export default defineComponent({
     },
     // 注意！这里的宽高不要用px，否则内部的echarts容易也会跟着用px，这样在移动端上会有问题
     style: {
-      type: Object as PropType<containerStyle>,
-      default: ():containerStyle => ({
+      type: Object as PropType<ContainerStyle>,
+      default: ():ContainerStyle => ({
         width: '100%',
         height: '6rem',
         margin: '0 auto'

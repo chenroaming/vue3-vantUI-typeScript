@@ -36,7 +36,7 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import pagesRoutes from '@/router/pages/pages'
 import type { RouteRecordRaw } from 'vue-router'
-import type { menuItem } from '@/types/components'
+import type { MenuItem } from '@/types/components'
 export default defineComponent({
   name: 'menuList',
   setup () {
@@ -47,8 +47,8 @@ export default defineComponent({
     const show = computed<boolean>(() => getters['app/isCollapse'])
     const avatar = require('@/assets/GitHub-Mark-64px.png')
     const active = ref<number>(0)
-    const menuList = computed<menuItem[]>(() => {
-      return pagesRoutes.map((el:RouteRecordRaw):menuItem => {
+    const menuList = computed<MenuItem[]>(() => {
+      return pagesRoutes.map((el:RouteRecordRaw):MenuItem => {
         // 类型守卫，确保一定是数组类型的数据才能使用解构
         const [children] = el.children instanceof Array ? el.children : []
         return {
