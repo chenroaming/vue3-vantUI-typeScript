@@ -2,12 +2,12 @@
  * @Author: chenroaming
  * @Date: 2022-08-15 13:38:53
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-15 15:33:04
+ * @LastEditTime: 2022-08-26 15:32:17
  * @FilePath: src\router\pages\pages.ts
  * @Description: 将二级及二级以下页面的路由写在此文件中
  */
 
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 const pagesContainer = () => import('@/views/OtherPage.vue')
 const Menu1 = () => import('@/views/menu1/index.vue')
 const Menu2 = () => import('@/views/menu2/index.vue')

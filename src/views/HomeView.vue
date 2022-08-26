@@ -17,8 +17,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-  .mobile-container {
-    width: 375px;
-    height: 150px;
+  .home {
+    background: #f7f8fa;
+    min-height: 100vh;
   }
 </style>
