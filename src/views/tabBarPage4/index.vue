@@ -15,8 +15,8 @@
 import { getFundDetailList } from '@/api/demo_fund'
 import { ref, reactive, defineComponent, onActivated } from 'vue'
 import CellList from './components/cell.vue'
-import { listItem } from '@/types/response/demo'
-import type { form } from '@/types/request/demo'
+import type { ListItem } from '@/types/response/demo'
+import type { GetFundDetailListParams } from '@/types/request/demo'
 export default defineComponent({
   name: 'tabBarPage4',
   components: {
@@ -24,8 +24,8 @@ export default defineComponent({
   },
   setup () {
     const msg = ref<string>('this is tabBarPage4')
-    const list = ref<listItem[]>([])
-    const form = reactive<form>({
+    const list = ref<ListItem[]>([])
+    const form = reactive<GetFundDetailListParams>({
       fundCode: null,
       pageIndex: 1,
       pageSize: 10

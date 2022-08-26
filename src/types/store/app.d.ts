@@ -4,10 +4,10 @@
  * @Author: chenroaming
  * @Date: 2022-08-22 15:46:17
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-24 16:19:15
+ * @LastEditTime: 2022-08-26 09:07:28
  */
 
-export declare interface state {
+export declare interface State {
   configuration: setting,
   isCollapse: boolean,
   pageTitle: string,

@@ -4,10 +4,10 @@
  * @Author: chenroaming
  * @Date: 2022-08-25 09:56:33
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-25 09:57:41
+ * @LastEditTime: 2022-08-26 09:08:43
  */
 
-export declare interface form {
+export declare interface GetFundDetailListParams {
   fundCode: number | null,
   pageIndex: number,
   pageSize: number

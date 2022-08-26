@@ -19,7 +19,7 @@ import { useStore } from 'vuex'
 import Header from './Header/index.vue'
 import SideBar from './SideBar/index.vue'
 import NavBar from './NavBar/index.vue'
-import { configuration } from '@/types'
+import { Configuration } from '@/types'
 export default defineComponent({
   name: 'homePage',
   components: {
@@ -32,7 +32,7 @@ export default defineComponent({
     const title = computed<string>(() => {
       return getters['app/pageTitle']
     })
-    const configuration = computed<configuration[]>(() => {
+    const configuration = computed<Configuration[]>(() => {
       const configurationToArr = Object.keys(getters['app/configuration'])
       return configurationToArr
         .filter(el => {

@@ -12,7 +12,7 @@
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
 import tarbarRoutes from '@/router/pages/tabBar'
-import type { routeRaw } from '@/types'
+import type { RouteRaw } from '@/types'
 import { useRoute } from 'vue-router'
 import type { TabbarItemProps } from 'vant'
 /**
@@ -22,7 +22,7 @@ import type { TabbarItemProps } from 'vant'
  * @return {*}
  * @author: yaofei
  */
-const getVanTabItemProps = (obj:routeRaw):Pick<TabbarItemProps, 'to' | 'name' | 'icon'> => {
+const getVanTabItemProps = (obj:RouteRaw):Pick<TabbarItemProps, 'to' | 'name' | 'icon'> => {
   const { name, path, meta } = obj
   return {
     name: name as string,
@@ -36,7 +36,7 @@ export default defineComponent({
     const $route = useRoute()
     const active = ref<string>('tabBar1')
     const [tarbarRoute] = tarbarRoutes
-    const tabBar = ref(tarbarRoute.children?.map((el:routeRaw) => getVanTabItemProps(el)))
+    const tabBar = ref(tarbarRoute.children?.map((el:RouteRaw) => getVanTabItemProps(el)))
     // 刷新页面时，获取当前的路由名称，然后激活标签栏相应的标签
     active.value = $route.name as string // 类型断言为string格式，避免报错
     return {

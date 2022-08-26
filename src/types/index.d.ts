@@ -1,13 +1,13 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-export interface configuration {
+export interface Configuration {
   key: string
 }
 
-export interface headers {
+export interface Headers {
   [k:string]: string
 }
-export interface apiItems {
+export interface ApiItems {
   key: string
   prefix?: string
   url: string
@@ -18,12 +18,12 @@ export interface apiItems {
   data?: paramsConfing
   cType?: string | number
 }
-export interface apiConfig {
+export interface ApiConfig {
   prefix?: string,
   items: apiItems[]
 }
 
-export interface axiosOptions {
+export interface AxiosOptions {
   params?: maps,
   data: maps,
   cType?: number | string,
@@ -31,11 +31,11 @@ export interface axiosOptions {
   headers?: object
 }
 
-export declare interface meta {
+export declare interface Meta {
   title?: string,
   icon?: string
 }
-export declare type routeRaw = {
+export declare type RouteRaw = {
   meta: { title: string, icon: string }
 } & RouteRecordRaw
 

@@ -9,13 +9,13 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { listItem } from '@/types/response/demo'
+import { ListItem } from '@/types/response/demo'
 export default defineComponent({
   name: 'cellGroup',
   props: {
     list: {
-      type: Array as PropType<listItem[]>,
-      default: ():listItem[] => ([]),
+      type: Array as PropType<ListItem[]>,
+      default: ():ListItem[] => ([]),
       required: false
     }
   }

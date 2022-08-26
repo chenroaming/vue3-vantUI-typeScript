@@ -4,10 +4,10 @@
  * @Author: chenroaming
  * @Date: 2022-08-19 11:38:43
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-25 11:16:46
+ * @LastEditTime: 2022-08-26 09:07:29
  */
 
-export declare interface listItem {
+export declare interface ListItem {
   FSRQ: string,
   DWJZ: string,
   [k: string]: string | null
@@ -21,7 +21,7 @@ interface Data {
   isNewType: boolean
 }
 
-export declare interface getFundDetailListItem {
+export declare interface GetFundDetailListItem {
   Data: Data,
   ErrCode: number,
   ErrMsg: null | string,

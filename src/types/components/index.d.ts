@@ -4,16 +4,16 @@
  * @Author: chenroaming
  * @Date: 2022-08-24 11:33:54
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-25 09:12:56
+ * @LastEditTime: 2022-08-26 09:07:38
  */
 
-export declare interface containerStyle {
+export declare interface ContainerStyle {
   width: string,
   height: string,
   [k:string]: string
 }
 
-export declare interface menuItem {
+export declare interface MenuItem {
   label: string,
   path: string
 }

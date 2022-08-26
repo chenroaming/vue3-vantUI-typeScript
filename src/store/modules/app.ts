@@ -1,8 +1,8 @@
 import { configuration, setting } from '@/setting'
-import { state } from '@/types/store/app'
+import { State } from '@/types/store/app'
 const app = {
   namespaced: true,
-  state: ():state => ({
+  state: ():State => ({
     configuration: configuration,
     isCollapse: false, // 侧边菜单栏收缩开关
     pageTitle: '', // 导航栏标题
@@ -15,7 +15,7 @@ const app = {
      * @return {*}
      * @author: chenroaming
      */
-    setCollapse (state:state):void {
+    setCollapse (state:State):void {
       state.isCollapse = !state.isCollapse
     },
     /**
@@ -25,7 +25,7 @@ const app = {
      * @return {*}
      * @author: chenroaming
      */
-    setPageTitle (state:state, title:string):void {
+    setPageTitle (state:State, title:string):void {
       state.pageTitle = title
     }
   },
@@ -33,10 +33,10 @@ const app = {
 
   },
   getters: {
-    isCollapse: (state:state):boolean => state.isCollapse,
-    pageTitle: (state:state):string => state.pageTitle,
-    configuration: (state:state):setting => state.configuration,
-    keepAliveRoute: (state:state):string[] => state.keepAliveRoute
+    isCollapse: (state:State):boolean => state.isCollapse,
+    pageTitle: (state:State):string => state.pageTitle,
+    configuration: (state:State):setting => state.configuration,
+    keepAliveRoute: (state:State):string[] => state.keepAliveRoute
   }
 }
 

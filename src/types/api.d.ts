@@ -4,12 +4,12 @@
  * @Author: chenroaming
  * @Date: 2022-08-18 16:29:22
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-24 15:10:15
+ * @LastEditTime: 2022-08-26 09:07:25
  */
 
-export declare interface moduleItem {
+export declare interface ModuleItem {
   [k: string]: (data:object) => unknown
 }
-export declare interface apiModule {
+export declare interface ApiModule {
   [k: string]: moduleItem
 }

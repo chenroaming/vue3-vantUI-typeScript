@@ -4,26 +4,26 @@
  * @Author: chenroaming
  * @Date: 2022-08-25 09:10:20
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-25 10:59:16
+ * @LastEditTime: 2022-08-26 09:07:27
  */
 import type { AxiosRequestConfig } from 'axios'
-export interface maps {
+export interface Maps {
   [k: string]: unknown
 }
 
-export interface kIsNumberVIsStr {
+export interface KIsNumberVIsStr {
   [k:number]: string
 }
 
-export interface paramsConfing {
+export interface ParamsConfing {
   [k:string]: unknown
 }
 
-export interface headers {
+export interface Headers {
   [k:string]: string
 }
 
-export interface configuration {
+export interface Configuration {
   key: string
 }
 
