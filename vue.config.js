@@ -14,7 +14,8 @@ module.exports = defineConfig({
   transpileDependencies: true,
   productionSourceMap: process.env.NODE_ENV === 'development',
   devServer: {
-    host: 'localhost',
+    host: '0.0.0.0',
+    port: port,
     open: true,
     proxy: {
       // 详情参阅: https://cli.vuejs.org/config/#devserver-proxy
