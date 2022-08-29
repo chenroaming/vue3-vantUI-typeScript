@@ -2,7 +2,7 @@
  * @Author: chenroaming
  * @Date: 2022-08-15 13:38:53
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-26 15:32:17
+ * @LastEditTime: 2022-08-29 16:38:32
  * @FilePath: src\router\pages\pages.ts
  * @Description: 将二级及二级以下页面的路由写在此文件中
  */
@@ -25,7 +25,7 @@ const pagesRoutes:Array<RouteRecordRaw> = [
         path: '/menu1',
         name: 'Menu1Index',
         component: Menu1,
-        meta: { title: '示例菜单1' }
+        meta: { title: 'Sample Menu 1' }
       }
     ]
   },
@@ -38,7 +38,7 @@ const pagesRoutes:Array<RouteRecordRaw> = [
         path: '/menu2',
         name: 'Menu2Index',
         component: Menu2,
-        meta: { title: '示例菜单2' }
+        meta: { title: 'Sample Menu 2' }
       }
     ]
   },
@@ -51,7 +51,7 @@ const pagesRoutes:Array<RouteRecordRaw> = [
         path: '/menu3',
         name: 'Menu3Index',
         component: Menu3,
-        meta: { title: '示例菜单3' }
+        meta: { title: 'Sample Menu 3' }
       }
     ]
   },
@@ -64,7 +64,7 @@ const pagesRoutes:Array<RouteRecordRaw> = [
         path: '/menu4',
         name: 'Menu4Index',
         component: Menu4,
-        meta: { title: '示例菜单4' }
+        meta: { title: 'Sample Menu 4' }
       }
     ]
   },
@@ -77,7 +77,7 @@ const pagesRoutes:Array<RouteRecordRaw> = [
         path: '/menu5',
         name: 'Menu5Index',
         component: Menu5,
-        meta: { title: '示例菜单5' }
+        meta: { title: 'Sample Menu 5' }
       }
     ]
   }

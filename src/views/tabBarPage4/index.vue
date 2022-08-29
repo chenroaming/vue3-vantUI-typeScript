@@ -13,20 +13,21 @@
 
 <script lang="ts">
 import { getFundDetailList } from '@/api/demo_fund'
-import { ref, reactive, defineComponent, onActivated } from 'vue'
+import { ref, reactive, defineComponent } from 'vue'
 import CellList from './components/cell.vue'
 import type { ListItem } from '@/types/response/demo'
 import type { GetFundDetailListParams } from '@/types/request/demo.d'
+import { getCurrentPagesName, onShow } from '@/libs/public'
 export default defineComponent({
   name: 'tabBarPage4',
   components: {
     CellList
   },
   setup () {
-    const msg = ref<string>('this is tabBarPage4')
+    const msg = ref<string>(`this is ${getCurrentPagesName().value}`)
     const list = ref<ListItem[]>([])
     const form = reactive<GetFundDetailListParams>({
-      fundCode: null,
+      fundCode: '',
       pageIndex: 1,
       pageSize: 10
     })
@@ -35,10 +36,7 @@ export default defineComponent({
       const { data } = await getFundDetailList({ ...form })
       list.value = data.Data.LSJZList
     }
-    onActivated(():void => {
-      // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
-      console.log('tabBarPage4 is activated!!!')
-    })
+    onShow()
     return {
       msg,
       handleClick,

@@ -8,12 +8,12 @@
 </template>
 
 <script lang='ts'>
-import { ref, defineComponent } from 'vue'
-import { getSource } from '@/libs/public'
+import { defineComponent } from 'vue'
+import { getSource, getCurrentPagesName } from '@/libs/public'
 export default defineComponent({
   name: 'Menu4Index',
   setup () {
-    const title = ref<string>('这是示例菜单4')
+    const title = `This is ${getCurrentPagesName().value}`
     const source = getSource()
     return {
       title,

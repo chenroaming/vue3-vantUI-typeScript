@@ -19,13 +19,14 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, onActivated } from 'vue'
+import { ref, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import pagesRoutes from '@/router/pages/pages'
 import { MenuItem } from '@/types/components'
 import type { PickerFieldNames, PickerOption } from 'vant'
 import type { RouteRecordRaw } from 'vue-router'
 import PropsAndEmits from './components/PropsAndEmits.vue'
+import { getCurrentPagesName, onShow } from '@/libs/public'
 import { Dialog } from 'vant'
 type option = {
   label: string,
@@ -38,7 +39,7 @@ export default defineComponent({
     PropsAndEmits
   },
   setup () {
-    const msg = ref<string>('this is tabBarPage3')
+    const msg = ref<string>(`this is ${getCurrentPagesName().value}`)
     const go = useRouter()
     // 弹窗开关
     const showPicker = ref<boolean>(false)
@@ -71,10 +72,7 @@ export default defineComponent({
         theme: 'round-button'
       })
     }
-    onActivated(():void => {
-      // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
-      console.log('tabBarPage3 is activated!!!')
-    })
+    onShow()
     return {
       msg,
       showPicker,

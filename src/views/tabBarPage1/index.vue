@@ -9,19 +9,17 @@
 </template>
 
 <script lang='ts'>
-import { ref, defineComponent, onActivated } from 'vue'
+import { ref, defineComponent } from 'vue'
+import { onShow, getCurrentPagesName } from '@/libs/public'
 export default defineComponent({
   name: 'tabBarPage1',
   setup () {
-    const msg = ref<string>('this is tabBarPage1')
+    const msg = ref<string>(`this is ${getCurrentPagesName().value}`)
     const count = ref<number>(0)
     const add = ():void => {
       count.value++
     }
-    onActivated(():void => {
-      // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
-      console.log('tabBarPage1 is activated!!!')
-    })
+    onShow()
     return {
       msg,
       count,

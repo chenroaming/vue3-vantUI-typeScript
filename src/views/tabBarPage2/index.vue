@@ -9,16 +9,17 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, onActivated } from 'vue'
+import { ref, defineComponent } from 'vue'
 import type { ECOption } from '@/libs/echarts'
 import EchartsContainer from '@/components/echartsContainer.vue'
+import { getCurrentPagesName, onShow } from '@/libs/public'
 export default defineComponent({
   name: 'tabBarPage2',
   components: {
     EchartsContainer
   },
   setup () {
-    const msg = ref<string>('this is tabBarPage2')
+    const msg = ref<string>(`this is ${getCurrentPagesName().value}`)
     const echartsBox = ref(null)
     const charts:ECOption[] = [
       {
@@ -134,10 +135,7 @@ export default defineComponent({
         ]
       }
     ]
-    onActivated(():void => {
-      // 切换至该页面时会执行该生命周期钩子，类似各种app/小程序中的onShow钩子
-      console.log('tabBarPage2 is activated!!!')
-    })
+    onShow()
     return {
       msg,
       charts,
