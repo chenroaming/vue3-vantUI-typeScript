@@ -1,4 +1,9 @@
 import type { App } from 'vue'
+// 手动引入函数式组件样式，参见：https://vant-contrib.gitee.io/vant/#/zh-CN/quickstart
+import 'vant/es/dialog/style'
+import 'vant/es/toast/style'
+import 'vant/es/notify/style'
+import 'vant/es/image-preview/style'
 import {
   Button,
   Popup,

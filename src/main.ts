@@ -7,11 +7,6 @@ import installVantUI from './libs/vant'
 import './router/permission'
 import '@/style/index.scss'
 import 'animate.css'
-// 手动引入样式，参见：https://vant-contrib.gitee.io/vant/#/zh-CN/quickstart
-import 'vant/es/dialog/style'
-import 'vant/es/toast/style'
-import 'vant/es/notify/style'
-import 'vant/es/image-preview/style'
 const app = createApp(App)
 app.use(store)
 app.use(router)
