@@ -3,6 +3,8 @@ const { VantResolver } = require('unplugin-vue-components/resolvers')
 const ComponentsPlugin = require('unplugin-vue-components/webpack')
 const port = 80 // 端口
 module.exports = defineConfig({
+  // 自动按需引入插件，减少vant打包后的体积
+  // 参见：https://vant-contrib.gitee.io/vant/#/zh-CN/quickstart
   configureWebpack: {
     plugins: [
       ComponentsPlugin({
@@ -14,7 +16,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   productionSourceMap: process.env.NODE_ENV === 'development',
   devServer: {
-    host: '0.0.0.0',
+    host: 'localhost',
     port: port,
     open: true,
     proxy: {
