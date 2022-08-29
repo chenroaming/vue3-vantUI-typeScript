@@ -21,7 +21,7 @@
         :key="item.label"
         class="card-item"
         :class="{ itemActived: isActived(item.label) }"
-        @click="setActive(item.label, item.path)">
+        @click="setActive(item.label, item.name)">
         <span>{{ item.label }}</span>
         <van-icon name="arrow" />
       </div>
@@ -41,7 +41,7 @@ export default defineComponent({
   name: 'menuList',
   setup () {
     const { getters, commit } = useStore()
-    const $route = useRouter()
+    const $router = useRouter()
     const activeLabel = ref<string>('')
     const isShow = ref<boolean>(false)
     const show = computed<boolean>(() => getters['app/isCollapse'])
@@ -54,14 +54,22 @@ export default defineComponent({
         return {
           // 类型守卫，确保一定是string类型的数据
           label: typeof children?.meta?.title === 'string' ? children.meta.title : '',
-          path: typeof children?.path === 'string' ? children.path : ''
+          path: typeof children?.path === 'string' ? children.path : '',
+          name: typeof children?.name === 'string' ? children.name : ''
         }
       })
     })
-    const setActive = (label:string, path:string):void => {
+    const setActive = (label:string, name:string):void => {
       activeLabel.value = label
       commit('app/setCollapse')
-      $route.push(path)
+      $router.push({
+        // 此处需要用name来跳转，便于传递params参数
+        // 参见：https://router.vuejs.org/zh/guide/essentials/navigation.html#%E5%AF%BC%E8%88%AA%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BD%8D%E7%BD%AE
+        name: name,
+        params: {
+          source: `from SideBar to ${name}`
+        }
+      })
     }
     const isActived = (label:string):boolean => {
       return label === activeLabel.value

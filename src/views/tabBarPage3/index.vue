@@ -29,7 +29,8 @@ import PropsAndEmits from './components/PropsAndEmits.vue'
 import { Dialog } from 'vant'
 type option = {
   label: string,
-  path: string
+  path: string,
+  name: string
 } & PickerOption
 export default defineComponent({
   name: 'tabBarPage3',
@@ -46,14 +47,18 @@ export default defineComponent({
       const [menuItem] = el.children as RouteRecordRaw[]
       return {
         label: menuItem?.meta?.title as string,
-        path: menuItem.path
+        path: menuItem.path,
+        name: menuItem.name as string
       }
     }))
     const customFieldName:PickerFieldNames = { text: 'label' }
     const onConfirm = (option:option):void => {
       showPicker.value = false
       go.push({
-        path: option.path
+        name: option.name,
+        params: {
+          source: `from tabBarPage3 to ${option.name}`
+        }
       })
     }
     const text = ref<string>('')

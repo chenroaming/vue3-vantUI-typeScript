@@ -4,7 +4,7 @@
  * @Author: chenroaming
  * @Date: 2022-08-24 11:33:54
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-26 11:22:58
+ * @LastEditTime: 2022-08-29 16:06:19
  */
 
 export declare interface ContainerStyle {
@@ -15,5 +15,6 @@ export declare interface ContainerStyle {
 
 export declare interface MenuItem {
   label: string,
-  path: string
+  path: string,
+  name: string
 }

@@ -12,5 +12,4 @@ app.use(store)
 app.use(router)
 // 按需加载vant组件
 installVantUI(app)
-// 按需加载echarts组件
 app.mount('#app')
