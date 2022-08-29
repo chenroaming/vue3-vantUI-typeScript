@@ -3,13 +3,12 @@ module.exports = {
   plugins: {
     // postcss-pxtorem 插件的版本需要 >= 5.0.0
     'postcss-pxtorem': {
-      // 如果是vant类型的文件，则以37.5作为基准值，否则设为75
       rootValue ({ file }) {
-        return file.includes('vant') ? 37.5 : 75
+        const exclude = ['node_modules\\vant'] // 此文件目录下的样式维持37.5的根元素大小
+        return exclude.some(el => file.includes(el)) ? 37.5 : 75
       },
-      // 代表转换所有css属性
-      propList: ['*'],
-      selectorBlackList: ['van-']
+      // 可以从 px 更改为 rem 的属性，这里使用通配符代表所有属性都要转化
+      propList: ['*']
     }
   }
 }
