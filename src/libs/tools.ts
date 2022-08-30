@@ -4,12 +4,12 @@
  * @Author: chenroaming
  * @Date: 2022-08-23 15:57:40
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-23 16:06:32
+ * @LastEditTime: 2022-08-30 09:48:38
  */
 
 export function px2rem (px:string):string {
   if (/%/ig.test(px)) {
     return px
   }
-  return `${(parseFloat(px) / 37.5)}rem`
+  return `${(parseFloat(px) / 75)}rem`
 }

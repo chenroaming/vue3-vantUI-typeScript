@@ -6,11 +6,11 @@
   @click-overlay="closeMenu"
   safe-area-inset-top
   safe-area-inset-bottom>
-  <div style="margin: 20px;">
+  <div class="avatar-box">
     <van-image
       round
-      :width="50"
-      :height="50"
+      :width="px2rem('100px')"
+      :height="px2rem('100px')"
       :src="avatar"
     />
   </div>
@@ -37,6 +37,7 @@ import { useRouter } from 'vue-router'
 import pagesRoutes from '@/router/pages/pages'
 import type { RouteRecordRaw } from 'vue-router'
 import type { MenuItem } from '@/types/components'
+import { px2rem } from '@/libs/tools'
 export default defineComponent({
   name: 'menuList',
   setup () {
@@ -93,16 +94,24 @@ export default defineComponent({
       active,
       menuList,
       isActived,
-      setActive
+      setActive,
+      px2rem
     }
   }
 })
 </script>
 
 <style scoped lang = "scss">
+  .avatar-box {
+    width: 490px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .menu {
-    width: 500px;
-    height: 100vh;
+    width: 490px;
+    min-height: calc(100vh - 200px);
   }
   .card {
     width: 430px;
