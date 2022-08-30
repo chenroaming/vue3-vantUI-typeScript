@@ -18,7 +18,7 @@ module.exports = {
     '@typescript-eslint/no-this-alias': 'off',
     // 允许使用require导入语法
     '@typescript-eslint/no-var-requires': 'off'
-    // 允许使用any类型
-    // '@typescript-eslint/no-explicit-any': ['off'],
+    // 是否允许使用any类型
+    // '@typescript-eslint/no-explicit-any': ['off']
   }
 }
