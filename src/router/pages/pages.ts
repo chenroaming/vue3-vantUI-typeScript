@@ -2,7 +2,7 @@
  * @Author: chenroaming
  * @Date: 2022-08-15 13:38:53
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-08-29 16:38:32
+ * @LastEditTime: 2022-08-30 10:46:19
  * @FilePath: src\router\pages\pages.ts
  * @Description: 将二级及二级以下页面的路由写在此文件中
  */
@@ -38,7 +38,7 @@ const pagesRoutes:Array<RouteRecordRaw> = [
         path: '/menu2',
         name: 'Menu2Index',
         component: Menu2,
-        meta: { title: 'Sample Menu 2' }
+        meta: { title: 'this is a very,very,very longer menu name' }
       }
     ]
   },

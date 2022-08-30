@@ -6,23 +6,24 @@
   @click-overlay="closeMenu"
   safe-area-inset-top
   safe-area-inset-bottom>
-  <div class="avatar-box">
-    <van-image
-      round
-      :width="px2rem('100px')"
-      :height="px2rem('100px')"
-      :src="avatar"
-    />
-  </div>
-  <div class="menu">
+  <div class="popupContainer">
+    <div class="avatar-box van-hairline--bottom">
+      <van-image
+        round
+        :width="px2rem('100px')"
+        :height="px2rem('100px')"
+        :src="avatar"
+      />
+    </div>
+    <div :style="{ 'width': '100%', 'height': px2rem('200px') }"></div>
     <div class="card">
       <div
         v-for="item in menuList"
         :key="item.label"
-        class="card-item"
+        class="card-item van-hairline--bottom"
         :class="{ itemActived: isActived(item.label) }"
         @click="setActive(item.label, item.name)">
-        <span>{{ item.label }}</span>
+        <span class="van-ellipsis">{{ item.label }}</span>
         <van-icon name="arrow" />
       </div>
     </div>
@@ -102,22 +103,27 @@ export default defineComponent({
 </script>
 
 <style scoped lang = "scss">
+  .popupContainer {
+    width: 490px;
+    height: 100vh;
+    background: #f7f8fa;
+  }
   .avatar-box {
     width: 490px;
     height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .menu {
-    width: 490px;
-    min-height: calc(100vh - 200px);
+    position: absolute;
+    top: 0;
   }
   .card {
     width: 430px;
     padding: 30px;
     margin: 0 auto;
     border-radius: 20px;
+    height: calc(100vh - 300px);
+    overflow: scroll;
     &-item {
       width: calc(100% - 40px);
       height: 100px;
